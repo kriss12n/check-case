@@ -126,16 +126,23 @@ class DiariesController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         // evento calendario
 
         $events =Diary::all();
-        $event_list = [];
-        foreach($events as $key => $event ){
-            $event_list[] =  Calendar::event(
-                $event->title_task,
-                true,
-                new \DateTime($event->date_task)
+        $event = [];
+
+        foreach($events as $row ){
+            $enddate = $row->date_task_end."24:00:00";
+            $event[] =  \Calendar::event(
+                $row->title_task,
+                false,
+                new \DateTime($row->date_task_start),
+                new \DateTime($row->date_task_end),
+                $row->id,
+                [
+                    'color' =>$row->color,
+                ]
             );
         }
 
-        $calendar_details = Calendar::addEvents($event_list);
+        $calendar_details = Calendar::addEvents($event);
 
 
         //creo que retorna la vista

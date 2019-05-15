@@ -285,8 +285,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="text-center" style="color:#c3c3c3;">
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
                         <h3>Agenda de citas y actividades</h3>
                     </div>
 
