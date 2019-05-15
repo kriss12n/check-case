@@ -18,7 +18,5 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-    Route::get('diary', array('as' => 'diary', 'uses' => 'CalendarController@mostrar'));
-
 });
 

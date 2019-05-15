@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Voyager;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\Diary;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
-class CalendarController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
+class DiariesController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
     use BreadRelationshipParser;
 
@@ -123,6 +123,22 @@ class CalendarController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
         // Check if a default search key is set
         $defaultSearchKey = $dataType->default_search_key ?? null;
 
+        // evento calendario
+
+        $events =Diary::all();
+        $event_list = [];
+        foreach($events as $key => $event ){
+            $event_list[] =  Calendar::event(
+                $event->title_task,
+                true,
+                new \DateTime($event->date_task)
+            );
+        }
+
+        $calendar_details = Calendar::addEvents($event_list);
+
+
+        //creo que retorna la vista
         $view = 'voyager::bread.browse';
 
         if (view()->exists("voyager::$slug.browse")) {
@@ -141,7 +157,9 @@ class CalendarController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
             'isServerSide',
             'defaultSearchKey',
             'usesSoftDeletes',
-            'showSoftDeleted'
+            'showSoftDeleted',
+            'calendar_details'
+
         ));
     }
 
@@ -205,25 +223,10 @@ class CalendarController extends \TCG\Voyager\Http\Controllers\VoyagerBaseContro
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted'));
     }
 
-    public function mostrar(){
 
-        $events = [];
-        $data   = Diary::all();
 
-        if($data->count())
-        {
-            foreach ($data as $key => $value)
-            {
-                $events[] = Calendar::event(
-                    $value->title_task, true, new \DateTime($value->date_task), null,
-                    ['color' => '#f05050',]
-                );
-            }
-        }
 
-        $calendar = Calendar::addEvents($events);
-        return view('vendor.voyager.diary.browse', compact('calendar'));
-    }
+
 
     //***************************************
     //                ______
