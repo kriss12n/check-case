@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-05-2019 a las 05:39:10
+-- Tiempo de generación: 15-05-2019 a las 09:01:23
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.4
 
@@ -74,11 +74,12 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (21, 1, 'role_id', 'text', 'Role', 1, 1, 1, 1, 1, 1, NULL, 9),
 (22, 4, 'id', 'number', 'Id', 1, 1, 1, 0, 0, 0, '{}', 1),
 (23, 4, 'title_task', 'text', 'Nombre de actividad', 1, 1, 1, 1, 1, 1, '{}', 2),
-(24, 4, 'date_task', 'date', 'Fecha de actividad', 1, 1, 1, 1, 1, 1, '{\"format\":\"%d-%m-%Y\"}', 3),
-(25, 4, 'status_task', 'select_dropdown', 'estado de actividad', 1, 1, 1, 1, 1, 1, '{\"default\":\"option1\",\"options\":{\"option1\":\"Pendiente\",\"option2\":\"Atrasada\",\"option3\":\"Realizada\"}}', 4),
-(26, 4, 'color', 'color', 'Color', 1, 1, 1, 1, 1, 1, '{}', 5),
-(27, 4, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 6),
-(28, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7);
+(25, 4, 'status_task', 'select_dropdown', 'estado de actividad', 1, 1, 1, 1, 1, 1, '{\"default\":\"option1\",\"options\":{\"option1\":\"Pendiente\",\"option2\":\"Atrasada\",\"option3\":\"Realizada\"}}', 5),
+(26, 4, 'color', 'color', 'Color', 1, 1, 1, 1, 1, 1, '{}', 6),
+(27, 4, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, '{}', 7),
+(28, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8),
+(29, 4, 'date_task_start', 'timestamp', 'fecha y hora de inicio', 1, 1, 1, 1, 1, 1, '{}', 3),
+(30, 4, 'date_task_end', 'timestamp', 'fecha y hora de finalización', 1, 1, 1, 1, 1, 1, '{}', 4);
 
 -- --------------------------------------------------------
 
@@ -112,7 +113,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', '', 1, 0, NULL, '2019-05-13 07:00:22', '2019-05-13 07:00:22'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2019-05-13 07:00:22', '2019-05-13 07:00:22'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, '', '', 1, 0, NULL, '2019-05-13 07:00:22', '2019-05-13 07:00:22'),
-(4, 'Diary', 'diary', 'Agenda', 'Agendas', 'voyager-calendar', 'App\\Diary', NULL, 'CalendarController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-05-14 04:36:42', '2019-05-14 07:21:52');
+(4, 'Diary', 'diary', 'Agenda', 'Agendas', 'voyager-calendar', 'App\\Diary', NULL, '\\App\\Http\\Controllers\\Voyager\\DiariesController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-05-14 04:36:42', '2019-05-15 10:35:01');
 
 -- --------------------------------------------------------
 
@@ -123,19 +124,21 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 CREATE TABLE `Diary` (
   `id` int(10) UNSIGNED NOT NULL,
   `title_task` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_task` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_task_start` datetime NOT NULL,
   `status_task` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `color` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `date_task_end` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `Diary`
 --
 
-INSERT INTO `Diary` (`id`, `title_task`, `date_task`, `status_task`, `color`, `created_at`, `updated_at`) VALUES
-(1, 'juicio de Juan Sandoval', '2019-05-15', 'option1', '#ff0000', '2019-05-14 04:49:28', '2019-05-14 04:49:28');
+INSERT INTO `Diary` (`id`, `title_task`, `date_task_start`, `status_task`, `color`, `created_at`, `updated_at`, `date_task_end`) VALUES
+(5, 'juicio de Juan Sandoval', '2019-05-16 08:30:00', 'option1', '#ff0000', '2019-05-15 10:37:26', '2019-05-15 10:37:26', '2019-05-16 10:00:00'),
+(6, 'Juicio de Cristobal Colon', '2019-05-18 10:30:00', 'option1', '#592a2a', '2019-05-15 10:45:51', '2019-05-15 10:45:51', '2019-05-18 12:00:00');
 
 -- --------------------------------------------------------
 
@@ -570,7 +573,7 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT de la tabla `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `data_types`
@@ -582,7 +585,7 @@ ALTER TABLE `data_types`
 -- AUTO_INCREMENT de la tabla `Diary`
 --
 ALTER TABLE `Diary`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `menus`
