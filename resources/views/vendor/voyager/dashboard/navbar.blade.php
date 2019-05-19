@@ -33,11 +33,17 @@
             @show
         </div>
         <ul class="nav navbar-nav @if (config('voyager.multilingual.rtl')) navbar-left @else navbar-right @endif">
-            <li>
-                <a href="">
-                   <i class="fas fa-bell"></i>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button"><i class="fas fa-bell"></i>
+                <span class="badge badge-pill badge-danger">2</span>
                 </a>
+                <ul class="dropdown-menu dropdown-menu-animated">
+                  <p>Hoy tiene Juicio de Sandoval</p>
+                    <li class="divider"></li>
+                  <p>Mañana tiene Juicio de Cristobal Colon</p>
+                </ul>
             </li>
+
             <li class="dropdown profile">
                 <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button"
                    aria-expanded="false"><img src="{{ $user_avatar }}" class="profile-img"> <span
