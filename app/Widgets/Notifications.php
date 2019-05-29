@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Widgets;
+
+use Illuminate\Support\Str;
+use TCG\Voyager\Facades\Voyager;
+use Illuminate\Support\Facades\DB;
+use App\Diary;
+use TCG\Voyager\Widgets\BaseDimmer;
+use App\Carbon;
+
+class Notifications extends BaseDimmer
+{
+    /**
+     * The configuration array.
+     *
+     * @var array
+     */
+    protected $config = [];
+
+    /**
+     * Treat this method as a controller action.
+     * Return view() or other content to display.
+     */
+    public function run()
+    {
+        $fecha = date('Y-m-d');
+        $count = DB::table('Diary')->whereDate('date_task_start',$fecha)->count();
+        $string = trans_choice(__('evento|eventos'), $count);
+        //eventos atrasados no cancelados
+        $con = DB::table('Diary')->whereDate('date_task_start','<',$fecha)->count(); 
+        
+
+        return view('voyager::dimmer', array_merge($this->config, [
+            'icon'   => 'voyager-bell',
+            'title'  => "{$count} {$string}",
+            'text'   => __('Para hoy tiene :count :string y tiene :con :string atrasados, haga click en el boton de abajo para verlas', ['con' => $con,'count' => $count, 'string' => Str::lower($string)]),
+            'button' => [
+                'text' => __('Ver agenda'),
+                'link' => route('voyager.diary.index'),
+            ],
+            'image' => voyager_asset('images/widget-backgrounds/02.jpg'),
+        ]));
+    }
+
+    /**
+     * Determine if the widget should be displayed.
+     *
+     * @return bool
+     */
+    public function shouldBeDisplayed()
+    {
+        return app('VoyagerAuth')->user()->can('browse', new Diary);
+    }
+}
