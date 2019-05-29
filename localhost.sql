@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 15-05-2019 a las 09:01:23
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.4
+-- Tiempo de generación: 29-05-2019 a las 02:23:54
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -113,7 +113,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', '', 1, 0, NULL, '2019-05-13 07:00:22', '2019-05-13 07:00:22'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2019-05-13 07:00:22', '2019-05-13 07:00:22'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, '', '', 1, 0, NULL, '2019-05-13 07:00:22', '2019-05-13 07:00:22'),
-(4, 'Diary', 'diary', 'Agenda', 'Agendas', 'voyager-calendar', 'App\\Diary', NULL, '\\App\\Http\\Controllers\\Voyager\\DiariesController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-05-14 04:36:42', '2019-05-15 10:35:01');
+(4, 'Diary', 'diary', 'Agenda', 'Agendas', 'voyager-calendar', 'App\\Diary', NULL, '\\App\\Http\\Controllers\\Voyager\\DiariesController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-05-14 04:36:42', '2019-05-23 23:35:11');
 
 -- --------------------------------------------------------
 
@@ -138,7 +138,15 @@ CREATE TABLE `Diary` (
 
 INSERT INTO `Diary` (`id`, `title_task`, `date_task_start`, `status_task`, `color`, `created_at`, `updated_at`, `date_task_end`) VALUES
 (5, 'juicio de Juan Sandoval', '2019-05-16 08:30:00', 'option1', '#ff0000', '2019-05-15 10:37:26', '2019-05-15 10:37:26', '2019-05-16 10:00:00'),
-(6, 'Juicio de Cristobal Colon', '2019-05-18 10:30:00', 'option1', '#592a2a', '2019-05-15 10:45:51', '2019-05-15 10:45:51', '2019-05-18 12:00:00');
+(6, 'Juicio de Cristobal Colon', '2019-05-18 10:30:00', 'option1', '#592a2a', '2019-05-15 10:45:51', '2019-05-15 10:45:51', '2019-05-18 12:00:00'),
+(7, 'Juicio de Chalo', '2019-05-20 14:30:00', 'option1', '#e5f90e', '2019-05-16 22:57:27', '2019-05-16 22:57:27', '2019-05-20 16:00:00'),
+(8, 'juicio del nero', '2019-05-21 08:30:00', 'option1', '#dad317', '2019-05-21 06:11:24', '2019-05-21 06:11:24', '2019-05-21 10:30:00'),
+(9, 'juicio de moncho', '2019-05-22 10:30:00', 'option1', '#da73d0', '2019-05-21 06:31:08', '2019-05-21 06:31:08', '2019-05-22 12:00:00'),
+(10, 'juicio de chalo 2', '2019-05-23 08:30:00', 'option1', '#c51717', '2019-05-23 22:18:30', '2019-05-23 22:18:30', '2019-05-23 10:30:00'),
+(11, 'juicio de moncho 2', '2019-05-24 22:00:00', 'option1', '#9fde91', '2019-05-24 21:53:50', '2019-05-24 21:53:50', '2019-05-24 12:00:00'),
+(12, 'Juicio de manuel', '2019-05-25 20:00:00', 'option1', '#000000', '2019-05-26 04:57:33', '2019-05-26 04:57:33', '2019-05-25 22:00:00'),
+(13, 'juicio de moncho 3', '2019-05-26 08:30:00', 'option1', '#b31212', '2019-05-26 04:59:23', '2019-05-26 04:59:23', '2019-05-26 10:00:00'),
+(14, 'juicio de Cardenas', '2019-05-28 11:05:00', 'option1', '#bf3131', '2019-05-28 19:06:04', '2019-05-28 19:06:04', '2019-05-28 13:00:00');
 
 -- --------------------------------------------------------
 
@@ -239,7 +247,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2017_11_26_015000_create_user_roles_table', 1),
 (20, '2018_03_11_000000_add_user_settings', 1),
 (21, '2018_03_14_000000_add_details_to_data_types_table', 1),
-(22, '2018_03_16_000000_make_settings_value_nullable', 1);
+(22, '2018_03_16_000000_make_settings_value_nullable', 1),
+(23, '2019_05_19_204731_create_notifications_table', 2),
+(24, '2019_05_24_045027_create_notifications_table', 3);
 
 -- --------------------------------------------------------
 
@@ -400,11 +410,11 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (2, 'site.description', 'Site Description', 'Site Description', '', 'text', 2, 'Site'),
 (3, 'site.logo', 'Site Logo', '', '', 'image', 3, 'Site'),
 (4, 'site.google_analytics_tracking_id', 'Google Analytics Tracking ID', NULL, '', 'text', 4, 'Site'),
-(5, 'admin.bg_image', 'Admin Background Image', 'settings/May2019/noyREFfDcEUGPzScBBAW.jpeg', '', 'image', 5, 'Admin'),
+(5, 'admin.bg_image', 'Admin Background Image', 'settings/May2019/9EB0QExcoVyvYR0D38Cf.jpeg', '', 'image', 5, 'Admin'),
 (6, 'admin.title', 'Admin Title', 'Check-Case', '', 'text', 1, 'Admin'),
 (7, 'admin.description', 'Admin Description', 'Bienvenido a panel de administración de Check-Case, por favor inicie sesión y empecemos a trabajar', '', 'text', 2, 'Admin'),
 (8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
-(9, 'admin.icon_image', 'Admin Icon Image', 'settings/May2019/DbKAOrwc7yb17N9Nnaya.jpeg', '', 'image', 4, 'Admin'),
+(9, 'admin.icon_image', 'Admin Icon Image', 'settings/May2019/aw4d7b6CBv3qwzAzW4Kj.jpeg', '', 'image', 4, 'Admin'),
 (10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin');
 
 -- --------------------------------------------------------
@@ -449,7 +459,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Cristian', 'kriss', 'users/default.png', NULL, '$2y$10$2pYthsx/wYzyyyBGoOwYDOfJa1Mn954N4PqyF1TU.YXpB8u5OrZJG', NULL, NULL, '2019-05-13 07:03:50', '2019-05-13 07:03:50');
+(1, 1, 'Cristian', 'kriss@gmail.com', 'users/May2019/vojXW9hJ49akP3jcE121.jpg', NULL, '$2y$10$2pYthsx/wYzyyyBGoOwYDOfJa1Mn954N4PqyF1TU.YXpB8u5OrZJG', NULL, '{\"locale\":\"es\"}', '2019-05-13 07:03:50', '2019-05-23 22:39:16');
 
 -- --------------------------------------------------------
 
@@ -585,7 +595,7 @@ ALTER TABLE `data_types`
 -- AUTO_INCREMENT de la tabla `Diary`
 --
 ALTER TABLE `Diary`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `menus`
@@ -603,7 +613,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `permissions`
