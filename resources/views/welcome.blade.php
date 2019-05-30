@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Check-Case</title>
     <link rel="stylesheet" href="/css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md">
-        <div class="container-fluid"><a class="navbar-brand navbar-brand-centered" href="#"> <img src="/images/section.logos.png" style="max-height:50px;"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container-fluid"><a class="navbar-brand navbar-brand-logo" href="#"> <img src="/images/indice.jpeg" style="max-height:50px;"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <h5 style="font-family: 'Pacifico', cursive;">Check-case</h5>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Nosotros</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Servicios</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Contacto</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="{{url('/admin/login')}}">Iniciar Sesion</a></li>
+                    <li class="nav-item btn " role="presentation"><a class="nav-link" href="#">Nosotros</a></li>
+                    <li class="nav-item btn " role="presentation"><a class="nav-link" href="#">Servicios</a></li>
+                    <li class="nav-item btn " role="presentation"><a class="nav-link" href="#">Contacto</a></li>
+                    <li class="nav-item btn " role="presentation" ><a class="nav-link" href="{{url('/admin/login')}}">Iniciar Sesion</a></li>
                 </ul>
         </div>
         </div>

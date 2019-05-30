@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 29-05-2019 a las 02:23:54
--- Versión del servidor: 10.1.37-MariaDB
--- Versión de PHP: 7.3.1
+-- Tiempo de generación: 30-05-2019 a las 11:02:25
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -146,7 +146,9 @@ INSERT INTO `Diary` (`id`, `title_task`, `date_task_start`, `status_task`, `colo
 (11, 'juicio de moncho 2', '2019-05-24 22:00:00', 'option1', '#9fde91', '2019-05-24 21:53:50', '2019-05-24 21:53:50', '2019-05-24 12:00:00'),
 (12, 'Juicio de manuel', '2019-05-25 20:00:00', 'option1', '#000000', '2019-05-26 04:57:33', '2019-05-26 04:57:33', '2019-05-25 22:00:00'),
 (13, 'juicio de moncho 3', '2019-05-26 08:30:00', 'option1', '#b31212', '2019-05-26 04:59:23', '2019-05-26 04:59:23', '2019-05-26 10:00:00'),
-(14, 'juicio de Cardenas', '2019-05-28 11:05:00', 'option1', '#bf3131', '2019-05-28 19:06:04', '2019-05-28 19:06:04', '2019-05-28 13:00:00');
+(15, 'Juicio de lopez', '2019-05-30 08:30:00', 'option1', '#ebd1d1', '2019-05-30 12:29:01', '2019-05-30 12:51:59', '2019-05-30 10:00:00'),
+(16, 'Juicio de israel', '2019-05-31 08:30:00', 'option1', '#ff0000', '2019-05-30 12:52:51', '2019-05-30 12:53:33', '2019-05-31 10:00:00'),
+(17, 'Juicio israel 2', '2019-05-31 10:30:00', 'option1', '#ffcf7f', '2019-05-30 12:58:20', '2019-05-30 12:58:20', '2019-05-31 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -410,11 +412,11 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (2, 'site.description', 'Site Description', 'Site Description', '', 'text', 2, 'Site'),
 (3, 'site.logo', 'Site Logo', '', '', 'image', 3, 'Site'),
 (4, 'site.google_analytics_tracking_id', 'Google Analytics Tracking ID', NULL, '', 'text', 4, 'Site'),
-(5, 'admin.bg_image', 'Admin Background Image', 'settings/May2019/9EB0QExcoVyvYR0D38Cf.jpeg', '', 'image', 5, 'Admin'),
+(5, 'admin.bg_image', 'Admin Background Image', 'settings/May2019/vzMl3dVHLsgP3T4OxrGH.jpeg', '', 'image', 5, 'Admin'),
 (6, 'admin.title', 'Admin Title', 'Check-Case', '', 'text', 1, 'Admin'),
 (7, 'admin.description', 'Admin Description', 'Bienvenido a panel de administración de Check-Case, por favor inicie sesión y empecemos a trabajar', '', 'text', 2, 'Admin'),
 (8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
-(9, 'admin.icon_image', 'Admin Icon Image', 'settings/May2019/aw4d7b6CBv3qwzAzW4Kj.jpeg', '', 'image', 4, 'Admin'),
+(9, 'admin.icon_image', 'Admin Icon Image', 'settings/May2019/nAA7m4MYopoXf7H01pNX.jpeg', '', 'image', 4, 'Admin'),
 (10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin');
 
 -- --------------------------------------------------------
@@ -459,7 +461,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Cristian', 'kriss@gmail.com', 'users/May2019/vojXW9hJ49akP3jcE121.jpg', NULL, '$2y$10$2pYthsx/wYzyyyBGoOwYDOfJa1Mn954N4PqyF1TU.YXpB8u5OrZJG', NULL, '{\"locale\":\"es\"}', '2019-05-13 07:03:50', '2019-05-23 22:39:16');
+(1, 1, 'Cristian', 'kriss@gmail.com', 'users/May2019/rK9yux65sorpADMPsGKd.jpg', NULL, '$2y$10$2pYthsx/wYzyyyBGoOwYDOfJa1Mn954N4PqyF1TU.YXpB8u5OrZJG', 'jx5YQLewmm8SksX1gWO9ME1jyC4ULAGPyLTTxY9rlnpFuQuycYR9jnBdFc1l', '{\"locale\":\"es\"}', '2019-05-13 07:03:50', '2019-05-30 11:35:55');
 
 -- --------------------------------------------------------
 
@@ -595,7 +597,7 @@ ALTER TABLE `data_types`
 -- AUTO_INCREMENT de la tabla `Diary`
 --
 ALTER TABLE `Diary`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `menus`
