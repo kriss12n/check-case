@@ -148,6 +148,14 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
             'post'
         ));
     }
+    //para responder los foros por separados
+    public function article($id){
+
+        $foro = DB::table('Foro')->where('id',$id)->get();
+
+
+        return  view('vendor.voyager.foro.responder.browse',compact('foro',$foro));
+    }
 
     //***************************************
     //                _____

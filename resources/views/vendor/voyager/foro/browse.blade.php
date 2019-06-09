@@ -34,31 +34,55 @@
     </div>
 @stop
 
-//contenido del Foro byKriss
 
-<div class="row-fluid">
-<div class="jumbotron">
 
-<h1 class="text-center">Blog</h1>
+
+
+<h1 class="text-center">Foro de dudas</h1>
 
 @foreach ($post as $p)
+<div class="container">
+    <div class="row">
 
-    <h3 class="text-center">{{$p->title}}</h3>
-<div align="center">
-    @if (!isset($p->photo))
-    <img class="img-responsive img-thumbnail" src="" alt="Este Post no contiene imagen">
-    @else
-    <img class="img-responsive img-thumbnail" src="{{ Voyager::image( $p->photo ) }}" alt="ocurrio un error al carga la imagen">
-    @endif
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        @if (!isset($p->photo))
+            <img class="img-responsive img-thumbnail" src="" alt="Este Post no contiene imagen">
+        @else
+            <img class="img-responsive img-thumbnail" src="{{ Voyager::image( $p->photo ) }}" alt="ocurrio un error al carga la imagen"><br>
+        @endif
+        </div>
+
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <h3>{{$p->title}}</h3>
+            <p>
+                {{$p->content}}
+            </p>
+        </div>
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <?php
+            $tags = explode(',',$p->tags);
+                ?>
+            @foreach ($tags as $t)
+        <label class="label label-primary">{{$t}}</label>
+            @endforeach
+        </div>
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <a href="foro/responder/{{$p->id}}" class="btn btn-danger">Responder</a>
+        </div>
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+        </div>
+    </div>
 </div>
 
-    <p class="text-center">
-        {{$p->content}}
-    </p>
+
+
+
     <hr>
 @endforeach
-</div>
-</div>
 
 @endsection
 
