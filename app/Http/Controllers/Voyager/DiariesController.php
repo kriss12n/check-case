@@ -15,6 +15,7 @@ use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\Diary;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
+use Illuminate\Support\Carbon;
 
 class DiariesController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
@@ -141,6 +142,8 @@ class DiariesController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
                 ]
             );
         }
+
+
 
         $calendar_details = Calendar::addEvents($event);
 
@@ -369,6 +372,8 @@ class DiariesController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
         if (view()->exists("voyager::$slug.edit-add")) {
             $view = "voyager::$slug.edit-add";
         }
+
+
 
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
     }

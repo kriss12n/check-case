@@ -7,7 +7,7 @@ use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\DB;
 use App\Diary;
 use TCG\Voyager\Widgets\BaseDimmer;
-use App\Carbon;
+use Illuminate\Support\Carbon;
 
 class Notifications extends BaseDimmer
 {
@@ -24,14 +24,16 @@ class Notifications extends BaseDimmer
      */
     public function run()
     {
-        $fecha = date('Y-m-d');
+        $fecha = Carbon::now();
         $count = DB::table('Diary')->whereDate('date_task_start',$fecha)->count();
         $string = trans_choice(__('evento|eventos'), $count);
-
+        $fecha = Carbon::now();
+        //verifica tareas atrasadas y cambia el estado
+        DB::table('Diary')->whereDate('date_task_end',"<",$fecha)->update(['status_task'=>'option2']);
         //eventos atrasados no cancelados
         $con = DB::table('Diary')->whereDate('date_task_start','<',$fecha)->count();
         //eventos para mañana
-        $manana =DB::table('Diary')->whereDate('date_task_start','>',$fecha)->count();
+        $manana = DB::table('Diary')->whereDate('date_task_start','>',$fecha)->count();
 
         return view('voyager::dimmer', array_merge($this->config, [
             'icon'   => 'voyager-bell',
