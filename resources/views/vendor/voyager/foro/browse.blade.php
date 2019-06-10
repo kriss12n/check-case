@@ -38,7 +38,7 @@
 
 
 
-<h1 class="text-center">Foro de dudas</h1>
+<h1 class="text-center">Foro de Consultas</h1>
 
 @foreach ($post as $p)
 <div class="container">
@@ -69,7 +69,7 @@
         </div>
 
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <a href="foro/responder/{{$p->id}}" class="btn btn-danger">Responder</a>
+            <a href="foro/responder/{{$p->id}}" class="btn btn-danger">Ver mas y Responder</a>
         </div>
 
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">

@@ -1,27 +1,57 @@
 @extends('voyager::master')
 @section('content')
-<div class="container">
+
+
 @foreach ($foro as $f)
+    <div class="container">
+        <div class="row align-center">
+            <h3 class="text-center">{{$f->title}}</h3>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <div align="center">
+                @if (!isset($f->photo))
+                    <img class="img-responsive img-thumbnail" src="" alt="Este Post no contiene imagen">
+                @else
+                    <img class="img-responsive img-thumbnail" src="{{ Voyager::image( $f->photo ) }}" alt="ocurrio un error al carga la imagen"><br>
+                @endif
+                </div>
+                <div class="col-12">
 
-<h3 class="text-center">{{$f->title}}</h3>
+                        <p class="text-center">
 
-<div  align="center" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-        @if (!isset($f->photo))
-              <img class="img-responsive img-thumbnail" src="" alt="Este Post no contiene imagen">
-        @else
-             <img class="img-responsive img-thumbnail" src="{{ Voyager::image( $f->photo ) }}" alt="ocurrio un error al carga la imagen"><br>
-        @endif
+                            {{$f->content}}
 
-        @endforeach
+                        </p>
 
+                    </div>
+                </div>
+    @endforeach
+    </div>
 </div>
+    <div class="container">
+            <div class="row" style="background-color:white;border-radius:5px;">
+                    <div class="col-12">
+                         <h3 class="text-center">Respuestas</h3>
+                    </div>
+            </div>
 
-<div class="col-3">
-    <p class="text-center">
-        {{$f->content}}
-    </p>
-</div>
+
+            <form class="POST" action="/foro/responser/enviar" name="url">
+                <div class="form-group">
+                    <label for="Respuesta">Respuesta</label>
+                    <textarea class="form-control" id="Respuesta" name="Respuesta" rows="3"></textarea>
+                 </div>
+                    @if("Respuesta" == null)
+                    <a type="submit" class="btn btn-primary" disabled="disabled">Enviar</a>
+                    @else
+                    <a type="submit" class="btn btn-primary">Enviar</a>
+                    @endif
+            </form>
+    </div>
 
 
-</div>
+
+
+
+
+
 @endsection
