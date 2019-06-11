@@ -21,11 +21,6 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 
 Route::get('foro/responder/{id}','Voyager\ForoController@article')->middleware('admin.user');
-Route::post('/foro/responser/enviar',function(){
-    $usuario_id =Input::get(Auth::id);
-    $tema = Input::get();
-    $texto=Input::get('Respuesta');
-    $nuevaRespuesta=Array("respuesta"=>$texto,);
-});
+Route::post('/foro/responder/enviar','RespuestaController@store')->middleware('admin.user');
 });
 

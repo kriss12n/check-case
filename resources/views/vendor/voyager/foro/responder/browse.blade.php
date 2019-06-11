@@ -1,7 +1,6 @@
 @extends('voyager::master')
 @section('content')
 
-
 @foreach ($foro as $f)
     <div class="container">
         <div class="row align-center">
@@ -35,15 +34,15 @@
             </div>
 
 
-            <form class="POST" action="/foro/responser/enviar" name="url">
+            <form class="form-control" method="POST" action="{{url('/foro/responder/enviar')}}">
                 <div class="form-group">
                     <label for="Respuesta">Respuesta</label>
                     <textarea class="form-control" id="Respuesta" name="Respuesta" rows="3"></textarea>
                  </div>
                     @if("Respuesta" == null)
-                    <a type="submit" class="btn btn-primary" disabled="disabled">Enviar</a>
+                    <input type="submit" class="btn btn-primary" disabled="disabled" value="enviar" ></input>
                     @else
-                    <a type="submit" class="btn btn-primary">Enviar</a>
+                    <input type="submit" class="btn btn-primary" value="enviar" ></input>
                     @endif
             </form>
     </div>
