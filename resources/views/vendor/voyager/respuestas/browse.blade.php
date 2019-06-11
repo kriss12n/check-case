@@ -34,16 +34,18 @@
             </div>
 
 
-            <form class="form-control" method="POST" action="{{url('/foro/responder/enviar')}}">
-                <div class="form-group">
+            <form action="{{url('foro/respuestas')}}"  method="POST" >
+
+                <div class="form-group mt-3 ">
                     <label for="Respuesta">Respuesta</label>
                     <textarea class="form-control" id="Respuesta" name="Respuesta" rows="3"></textarea>
                  </div>
-                    @if("Respuesta" == null)
-                    <input type="submit" class="btn btn-primary" disabled="disabled" value="enviar" ></input>
-                    @else
-                    <input type="submit" class="btn btn-primary" value="enviar" ></input>
-                    @endif
+                <input type="hidden" name="usuario" value="Auth::id" >
+                 <input type="hidden" name="tema" value="$tema->id" >
+                 <div>
+                    <button type="submit" class="btn btn-primary">enviar</button>
+                 </div>
+
             </form>
     </div>
 

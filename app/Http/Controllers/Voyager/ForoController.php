@@ -154,8 +154,16 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
         $foro = DB::table('Foro')->where('id',$id)->get();
 
 
-        return  view('vendor.voyager.foro.responder.browse',compact('foro',$foro));
+        return  view('vendor.voyager.respuestas.browse',compact('foro',$foro));
     }
+
+    //enviar respuesta del post
+    public function resp(Request $request){
+        dd($request);
+
+        return view('welcome');
+    }
+
 
     //***************************************
     //                _____

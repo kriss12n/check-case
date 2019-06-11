@@ -14,7 +14,7 @@ use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 
-class RespuestaController  extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
+class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
     use BreadRelationshipParser;
 
@@ -350,8 +350,25 @@ class RespuestaController  extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
      */
     public function store(Request $request)
     {
-        dd($request);
-        return view('vendor.voyager.foro.responder.browse');
+        $slug = $this->getSlug($request);
+
+        $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
+
+        // Check permission
+        $this->authorize('add', app($dataType->model_name));
+
+        // Validate fields with ajax
+        $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
+        $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
+
+        event(new BreadDataAdded($dataType, $data));
+
+        return redirect()
+        ->route("voyager.{$dataType->slug}.index")
+        ->with([
+                'message'    => __('voyager::generic.successfully_added_new')." {$dataType->display_name_singular}",
+                'alert-type' => 'success',
+            ]);
     }
 
     //***************************************

@@ -59,7 +59,7 @@
         </div>
 
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <a href="foro/responder/{{$p->id}}" class="btn btn-danger">Ver mas y Responder</a>
+            <a href="respuestas/{{$p->id}}" class="btn btn-danger">Ver mas y Responder</a>
         </div>
 
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
