@@ -20,8 +20,9 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 
-Route::get('responder/{id}','Voyager\ForoController@article')->middleware('admin.user');
-Route::post('foro/respuestas/','Voyager\ForoController@resp')->middleware('admin.user');
+Route::post('respuestas', function(){
+$post = App\Foro::all();
+});
 
 });
 

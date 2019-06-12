@@ -35,7 +35,6 @@
         @include('voyager::multilingual.language-selector')
     </div>
 @stop
-
 @section('content')
     <div class="page-content browse container-fluid">
         @include('voyager::alerts')
@@ -70,6 +69,24 @@
                                 @endif
                             </form>
                         @endif
+                                            <!-- Calendario -->
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading text-center">
+                                            <h3>Agenda de citas y actividades</h3>
+                                        </div>
+
+                                        <div class="panel-body">
+                                            {!! $calendar_details->calendar() !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="table-responsive">
                             <table id="dataTable" class="table table-hover">
                                 <thead>
@@ -282,21 +299,6 @@
 
     <!-- Calendario -->
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading text-center">
-                        <h3>Agenda de citas y actividades</h3>
-                    </div>
-
-                    <div class="panel-body">
-                        {!! $calendar_details->calendar() !!}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     {{-- Single delete modal --}}
     <div class="modal modal-danger fade" tabindex="-1" id="delete_modal" role="dialog">
