@@ -20,9 +20,5 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 
-Route::post('respuestas', function(){
-$post = App\Foro::all();
-});
-
 });
 
