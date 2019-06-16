@@ -148,6 +148,7 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
             'post'
         ));
     }
+
     //para responder los foros por separados
     public function article($id){
 
