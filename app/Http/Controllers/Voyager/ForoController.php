@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers\Voyager;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Foro;
+use App\User;
 use Illuminate\Http\Request;
+use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\DB;
-use TCG\Voyager\Database\Schema\SchemaManager;
+use Illuminate\Support\Facades\Auth;
 use TCG\Voyager\Events\BreadDataAdded;
 use TCG\Voyager\Events\BreadDataDeleted;
-use TCG\Voyager\Events\BreadDataRestored;
 use TCG\Voyager\Events\BreadDataUpdated;
+use TCG\Voyager\Events\BreadDataRestored;
 use TCG\Voyager\Events\BreadImagesDeleted;
-use TCG\Voyager\Facades\Voyager;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
-use App\Foro;
 
 class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
@@ -122,14 +124,28 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
         // Check if a default search key is set
         $defaultSearchKey = $dataType->default_search_key ?? null;
 
-        //retornando los post
-        $post = Foro::all();
+
+        //retornando nombre del id
+        $id = DB::table('Foro')->pluck('usuario_id');
+         //buscando usuario
+        $user = User::select('name1', 'surname1')
+        ->whereIn('id', $id)
+        ->get();
+
+           //retornando los post
+           if(Auth::id() == 1 ){
+            $post = Foro::all();
+           }else{
+            $post = Foro::all()->where('usuario_id',Auth::id());
+           }
 
         $view = 'voyager::bread.browse';
 
         if (view()->exists("voyager::$slug.browse")) {
             $view = "voyager::$slug.browse";
         }
+
+
 
 
         return Voyager::view($view, compact(
@@ -145,19 +161,10 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
             'defaultSearchKey',
             'usesSoftDeletes',
             'showSoftDeleted',
-            'post'
+            'post',
+            'user'
         ));
     }
-
-    //para responder los foros por separados
-    public function article($id){
-
-        $foro = DB::table('Foro')->where('id',$id)->get();
-
-
-        return  view('vendor.voyager.respuestas.browse',compact('foro',$foro));
-    }
-
     //enviar respuesta del post
     public function resp(Request $request){
         dd($request);
@@ -178,7 +185,7 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
     //
     //****************************************
 
-    public function show(Request $request, $id)
+    public function show(Request $request,$id)
     {
         $slug = $this->getSlug($request);
 
@@ -373,6 +380,9 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
      */
     public function store(Request $request)
     {
+        //añado al usuario a la tabla de manera automatica
+        $user_id =Auth::id();
+        $request->merge(['usuario_id'=>$user_id]);
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();

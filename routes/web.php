@@ -20,6 +20,5 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 
-Route::get('respuestas/{id}','RespuestasController@article')->middleware('user.admin');
 });
 

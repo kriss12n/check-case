@@ -32,31 +32,35 @@
     @endcan
 </div>
 
-@foreach ($post as $posts)
+@if($post->isEmpty())
+<div class="container-fluid">
+    <hr>
+        <p class="text-center">No existen Post que mostrar</p>
+</div>
+@else
 
 <div class="container" style="background: white;">
-        <hr>
+@foreach ($post as $posts)
+
+<hr>
     <div class="row">
         <div class="col-12 col-sm-5x col-xl-5 col-md-5">
            <h3 style="color:black">{{$posts->title}}</h3>
-           <p style="color:gray;font-size:12px;">subido el : {{$posts->created_at}} por</p>
-           <p style="font-size: 20pxx">{{$posts->content}}</p>
+           <p style="color:gray;font-size:12px;">subido el : {{$posts->created_at}}
+
+por {{$posts->user->name1}}
+
+ </p>
+        <p style="font-size: 20pxx">{!! $posts->content !!}</p>
         </div>
-
-        <div class="col-12 col-sm-2 col-xl-2 col-md-2" style="padding-top:3vh">
-
-        </div>
-
-        <div class="col-12 col-sm-2 col-xl-2 col-md-2">
-            <p></p>
-        </div>
-
         <div class="col-12 col-sm-2 col-md-2 col-xl-2" style="padding-top:15hv">
-            <a href="respuestas/{{$posts->id}}" class="btn btn-danger">Responder</a>
+            <a href="{{ route('voyager.respuestas.index',['prop'=>$posts->getKey()]) }}" class="btn btn-danger">Responder</a>
         </div>
     </div>
 
 @endforeach
+@endif
+
 <hr>
 </div>
 
