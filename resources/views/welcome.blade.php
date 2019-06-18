@@ -23,19 +23,23 @@
         </div>
         </div>
     </nav>
-    <div class="jumbotron product-month" style="margin: auto;">
-        <div class="work-month" style="margin: auto;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-5 col-md-7 offset-sm-7 offset-md-5">
-                        <h1 class="text-white">Heading text</h1>
-                        <p class="text-lowercase text-white">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                        <p><a class="btn btn-info text-nowrap text-white" role="button" href="#">Learn more</a></p>
-                    </div>
-                </div>
-            </div>
+
+   <!-- carousel con cambio de imagen a voluntad -->
+
+
+    <div class="carousel-item">
+        @foreach ($index as $items)
+        <?php
+$file = (json_decode($items->image_slider));
+?>
+        <img src="{{ Voyager::image( $file ) }}" alt="Error al cargar la imagen">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>ejemplo</h5>
+          <p>Ejemplo2</p>
+        @endforeach
         </div>
-    </div>
+      </div>
+
     <div class="container text-body" id="nosotros">				<div class="caption v-middle text-center">
 					<h1 class="cd-headline clip">
 			            <span class="blc">Somos| </span>

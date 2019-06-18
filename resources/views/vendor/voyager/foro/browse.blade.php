@@ -48,7 +48,7 @@
            <h3 style="color:black">{{$posts->title}}</h3>
            <p style="color:gray;font-size:12px;">subido el : {{$posts->created_at}}
 
-por {{$posts->user->name1}}
+por {{$posts->user()->first()->name1}}
 
  </p>
         <p style="font-size: 20pxx">{!! $posts->content !!}</p>

@@ -12,13 +12,12 @@ use Illuminate\Support\Facades\Input;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 
 });
 
+//para el index
+
+Route::get('/','IndexController@index');
