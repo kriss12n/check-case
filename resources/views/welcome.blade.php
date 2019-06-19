@@ -27,16 +27,7 @@
    <!-- carousel con cambio de imagen a voluntad -->
 
 
-    <div class="carousel-item">
-        @foreach ($index as $items)
-        <?php
-$file = (json_decode($items->image_slider));
-?>
-        <img src="{{ Voyager::image( $file ) }}" alt="Error al cargar la imagen">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>ejemplo</h5>
-          <p>Ejemplo2</p>
-        @endforeach
+
         </div>
       </div>
 

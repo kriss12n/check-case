@@ -125,16 +125,13 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
         $defaultSearchKey = $dataType->default_search_key ?? null;
 
 
-        //retornando nombre del id
-        $id = DB::table('Foro')->pluck('usuario_id');
-         //buscando usuario
-        $user = User::select('name1', 'surname1')
-        ->whereIn('id', $id)
-        ->get();
+             //retornando nombre del id
+            $id = DB::table('Foro')->pluck('usuario_id');
 
-           //retornando los post
+           //retornando los post con inner join
            if(Auth::id() == 1 ){
-            $post = Foro::all();
+            $post = Foro::join('users','users.id','=','Foro.usuario_id')->get();
+            //dd($post);
            }else{
             $post = Foro::all()->where('usuario_id',Auth::id());
            }

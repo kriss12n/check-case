@@ -18,6 +18,11 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 
+//crear la ruta y funcion en el controller con id del mensaje, cadena del mensaje
+
+
+
+
 //para el index
 
 Route::get('/','IndexController@index');
