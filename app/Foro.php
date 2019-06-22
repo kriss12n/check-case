@@ -9,12 +9,6 @@ class Foro extends Model
 {
     protected $table = "Foro";
 
-
-
-
-
-
-
 }
 
 

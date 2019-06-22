@@ -20,7 +20,7 @@
                 <div class="dimmer"></div>
                 <div class="panel-content">
                     <img src="{{ $user_avatar }}" class="avatar" alt="{{ app('VoyagerAuth')->user()->name }} avatar">
-                    <h4>{{ ucwords(app('VoyagerAuth')->user()->name) }}</h4>
+                    <h4>{{ ucwords(app('VoyagerAuth')->user()->name1) }} {{ ucwords(app('VoyagerAuth')->user()->surname1) }}</h4>
                     <p>{{ app('VoyagerAuth')->user()->email }}</p>
 
                     <a href="{{ route('voyager.profile') }}" class="btn btn-primary">{{ __('voyager::generic.profile') }}</a>

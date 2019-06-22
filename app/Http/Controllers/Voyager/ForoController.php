@@ -131,9 +131,8 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
            //retornando los post con inner join
            if(Auth::id() == 1 ){
             $post = Foro::join('users','users.id','=','Foro.usuario_id')->get();
-            //dd($post);
            }else{
-            $post = Foro::all()->where('usuario_id',Auth::id());
+            $post = Foro::join('users','users.id','=','Foro.usuario_id')->where('usuario_id',Auth::id())->get();
            }
 
         $view = 'voyager::bread.browse';

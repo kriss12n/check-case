@@ -12,6 +12,17 @@
     .font-montserrat{
         font-family: 'Montserrat', sans-serif;
     }
+    .img-perfil{
+        height: 100px;
+        width: 100px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        border-radius: 50%;
+        background-size: 100% auto;
+        margin-top: 5vh;
+        margin-left: 5vh;
+        border: 1px solid black;
+    }
 </style>
 
 <div class="jumbotron jumbotron-fluid">
@@ -44,17 +55,22 @@
 
 <hr>
     <div class="row">
-        <div class="col-12 col-sm-5x col-xl-5 col-md-5">
+        <div class="col-12  col-sm-2 col-md-2 col-xl-2">
+                <img src="{{ Voyager::image( $posts->avatar ) }}" alt="Error al cargar la imagen" class=" img-perfil">
+        </div>
+
+        <div class="col-12 col-sm-7 col-xl-7 col-md-7">
            <h3 style="color:black">{{$posts->title}}</h3>
            <p style="color:gray;font-size:12px;">subido el : {{$posts->created_at}}
 
-por {{$posts->name1}}
+por {{$posts->name1}} {{$posts->surname1}} {{$posts->surname2}}
 
  </p>
-        <p style="font-size: 20pxx">{!! $posts->content !!}</p>
+
+        <p style="font-size: 20px"> {!!str_limit($posts->content,255) !!}</p>
         </div>
         <div class="col-12 col-sm-2 col-md-2 col-xl-2" style="padding-top:15hv">
-            <a href="{{ route('voyager.respuestas.index',['prop'=>$posts->getKey()]) }}" class="btn btn-danger">Responder</a>
+            <a href="{{ route('voyager.respuestas.index',['prop'=>$posts->getKey()]) }}" class="btn btn-danger">Responder <i class="far fa-comment"></i></a>
         </div>
     </div>
 

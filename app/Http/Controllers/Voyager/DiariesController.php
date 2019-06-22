@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Voyager;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Events\BreadDataAdded;
 use TCG\Voyager\Events\BreadDataDeleted;
@@ -387,6 +388,8 @@ class DiariesController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
      */
     public function store(Request $request)
     {
+        $user_id =Auth::id();
+        $request->merge(['origin'=>$user_id]);
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
