@@ -13,6 +13,8 @@ use TCG\Voyager\Events\BreadDataUpdated;
 use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
+use App\Foro;
+use App\Respuesta;
 
 class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
@@ -32,6 +34,9 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
 
     public function index(Request $request)
     {
+
+
+
         // GET THE SLUG, ex. 'posts', 'pages', etc.
         $slug = $this->getSlug($request);
 
@@ -126,7 +131,6 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
         if (view()->exists("voyager::$slug.browse")) {
             $view = "voyager::$slug.browse";
         }
-
         return Voyager::view($view, compact(
             'dataType',
             'dataTypeContent',
@@ -350,6 +354,19 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
      */
     public function store(Request $request)
     {
+
+
+        //condigo mio
+        $post = Foro::findOrFail($request->post_id);
+        $id = $post->id;
+        Respuesta::create([
+            'body' => $request->body,
+            'user_id' => Auth::id(),
+            'post_id' => $post->id
+        ]);
+
+
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();

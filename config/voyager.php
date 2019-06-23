@@ -150,7 +150,8 @@ return [
         ],
 
         'widgets' => [
-            App\Widgets\Notifications::class,
+            'App\\Widgets\\Notifications',
+            'App\\Widgets\\Post'
         ],
 
     ],

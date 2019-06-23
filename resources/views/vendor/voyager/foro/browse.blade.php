@@ -19,9 +19,14 @@
         background-position: 50%;
         border-radius: 50%;
         background-size: 100% auto;
-        margin-top: 5vh;
+        margin-top: 1vh;
         margin-left: 5vh;
         border: 1px solid black;
+    }
+    .no-leido{
+        background-color: #e2e2f9;
+        border: 1px solid #bebde9;
+
     }
 </style>
 
@@ -52,7 +57,30 @@
 
 <div class="container" style="background: white;">
 @foreach ($post as $posts)
+@if ($posts->leido == 0)
+<hr>
+    <div class="row no-leido">
+        <div class="col-12  col-sm-2 col-md-2 col-xl-2">
+                <img src="{{ Voyager::image( $posts->avatar ) }}" alt="Error al cargar la imagen" class=" img-perfil">
+        </div>
 
+        <div class="col-12 col-sm-7 col-xl-7 col-md-7">
+           <h3 style="color:black">{{$posts->title}}</h3>
+           <p style="color:gray;font-size:12px;">subido el : {{$posts->created_at}}
+
+por {{$posts->name1}} {{$posts->surname1}} {{$posts->surname2}}
+
+ </p>
+
+        <p style="font-size: 20px"> {!!str_limit($posts->content,255) !!}</p>
+        </div>
+        <div class="col-12 col-sm-2 col-md-2 col-xl-2" style="margin-top:5vh;">
+            <a href="route('voyager.foro.{{$posts->id}}.edit')" class="btn btn-danger">Responder <i class="far fa-comment"></i></a>
+        </div>
+    </div>
+
+
+@else
 <hr>
     <div class="row">
         <div class="col-12  col-sm-2 col-md-2 col-xl-2">
@@ -69,10 +97,13 @@ por {{$posts->name1}} {{$posts->surname1}} {{$posts->surname2}}
 
         <p style="font-size: 20px"> {!!str_limit($posts->content,255) !!}</p>
         </div>
-        <div class="col-12 col-sm-2 col-md-2 col-xl-2" style="padding-top:15hv">
-            <a href="{{ route('voyager.respuestas.index',['prop'=>$posts->getKey()]) }}" class="btn btn-danger">Responder <i class="far fa-comment"></i></a>
+        <div class="col-12 col-sm-2 col-md-2 col-xl-2" style="margin-top:5vh;">
+            <a href="{{ route('voyager.foro.edit',['prop'=>$posts->getKey()])  }}" class="btn btn-danger">Responder <i class="far fa-comment"></i></a>
         </div>
     </div>
+
+
+@endif
 
 @endforeach
 @endif
