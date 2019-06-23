@@ -38,12 +38,12 @@ class Notifications extends BaseDimmer
         return view('voyager::dimmer', array_merge($this->config, [
             'icon'   => 'voyager-bell',
             'title'  => "{$count} {$string} para hoy",
-            'text'   => __('Para hoy tiene :count :string , para mañana tiene :manana :string y tiene :con :string atrasados, haga click en el boton de abajo para ir a la agenda', ['con' => $con,'manana' =>$manana,'count' => $count, 'string' => Str::lower($string)]),
+            'text'   => __('hoy tiene :count :string , para mañana tiene :manana :string y tiene :con :string atrasados, haga click en el boton de abajo para ir a la agenda', ['con' => $con,'manana' =>$manana,'count' => $count, 'string' => Str::lower($string)]),
             'button' => [
                 'text' => __('Ver agenda'),
                 'link' => route('voyager.diary.index'),
             ],
-            'image' => voyager_asset('images/widget-backgrounds/02.jpg'),
+            'image' => voyager_asset('images/widget-backgrounds/01.jpg'),
         ]));
     }
 

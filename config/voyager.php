@@ -150,8 +150,8 @@ return [
         ],
 
         'widgets' => [
-            'App\\Widgets\\Notifications',
-            'App\\Widgets\\Post'
+            '\\App\\Widgets\\Notifications',
+            '\\App\\Widgets\\Posts',
         ],
 
     ],

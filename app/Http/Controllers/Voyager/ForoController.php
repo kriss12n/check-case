@@ -131,7 +131,6 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
            //retornando los post con inner join
            if(Auth::id() == 1 ){
             $post = Foro::join('users','users.id','=','Foro.usuario_id')->get();
-            dd($post);
            }else{
             $post = Foro::join('users','users.id','=','Foro.usuario_id')->where('usuario_id',Auth::id())->get();
            }
@@ -162,12 +161,7 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
             'user'
         ));
     }
-    //enviar respuesta del post
-    public function resp(Request $request){
-        dd($request);
 
-        return view('welcome');
-    }
 
 
     //***************************************
