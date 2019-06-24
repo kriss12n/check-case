@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Index;
+use App\Carousel;
 
 class IndexController extends Controller
 {
@@ -14,9 +14,9 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $index = index::all();
+        $slider = Carousel::all();
 
-        return view('welcome',compact('index'));
+        return view('welcome',compact('slider',$slider));
     }
 
     /**
