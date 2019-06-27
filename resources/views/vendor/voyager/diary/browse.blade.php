@@ -78,7 +78,6 @@
                                         <div class="panel-heading text-center">
                                             <h3>Agenda de citas y actividades</h3>
                                         </div>
-
                                         <div class="panel-body">
                                             {!! $calendar_details->calendar() !!}
                                         </div>
@@ -401,5 +400,6 @@
         });
 
     </script>
+
 {!! $calendar_details->script() !!}
 @stop

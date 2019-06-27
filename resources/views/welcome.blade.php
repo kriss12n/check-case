@@ -39,7 +39,7 @@
                 <img class="d-block w-100" src="{{ Voyager::image( $sliders->image ) }}" alt="Error al cargar el carrusel">
                 <div class="carousel-caption">
                 <h2 style="color:{{$sliders->color}}">{{$sliders->tittle}}</h2>
-                <h4 style="color:{{$sliders->color}}">{{$sliders->sub_tittle}}</h4>
+                <h4 style="color:{{$sliders->color}}">{{$sliders->subtittle}}</h4>
                 </div>
               </div>
           @endforeach

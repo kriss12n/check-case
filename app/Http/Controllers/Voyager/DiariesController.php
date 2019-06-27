@@ -388,8 +388,12 @@ class DiariesController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControl
      */
     public function store(Request $request)
     {
+
         $user_id =Auth::id();
-        $request->merge(['origin'=>$user_id]);
+        $user = DB::table('users')->select('name1')->where('id',$user_id)->first();
+        $data= json_decode( json_encode($user), true);
+        $request->merge(['origin'=>$user->name1]);
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();

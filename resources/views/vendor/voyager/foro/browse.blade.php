@@ -75,7 +75,7 @@ por {{$posts->name1}} {{$posts->surname1}} {{$posts->surname2}}
         <p style="font-size: 20px"> {!!str_limit($posts->content,255) !!}</p>
         </div>
         <div class="col-12 col-sm-2 col-md-2 col-xl-2" style="margin-top:5vh;">
-            <a href="route('voyager.foro.{{$posts->id}}.edit')" class="btn btn-danger">Responder <i class="far fa-comment"></i></a>
+            <a href="/admin/respuesta/{{$posts->id}}" class="btn btn-danger">Responder <i class="far fa-comment"></i></a>
         </div>
     </div>
 
@@ -98,11 +98,9 @@ por {{$posts->name1}} {{$posts->surname1}} {{$posts->surname2}}
         <p style="font-size: 20px"> {!!str_limit($posts->content,255) !!}</p>
         </div>
         <div class="col-12 col-sm-2 col-md-2 col-xl-2" style="margin-top:5vh;">
-            <a href="{{ route('voyager.foro.edit',['prop'=>$posts->getKey()])  }}" class="btn btn-danger">Responder <i class="far fa-comment"></i></a>
-        </div>
+             <a href="/admin/respuesta/{{$posts->id}}"  class="btn btn-danger">Responder <i class="far fa-comment"></i></a>
+            </div>
     </div>
-
-
 @endif
 
 @endforeach

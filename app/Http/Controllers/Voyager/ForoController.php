@@ -125,14 +125,13 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
         $defaultSearchKey = $dataType->default_search_key ?? null;
 
 
-             //retornando nombre del id
-            $id = DB::table('Foro')->pluck('usuario_id');
-
            //retornando los post con inner join
            if(Auth::id() == 1 ){
-            $post = Foro::join('users','users.id','=','Foro.usuario_id')->get();
+            $post = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido','users.name1','users.surname1','users.surname2','users.avatar')->get();
+            //dd($post);
            }else{
             $post = Foro::join('users','users.id','=','Foro.usuario_id')->where('usuario_id',Auth::id())->get();
+
            }
 
         $view = 'voyager::bread.browse';
@@ -374,6 +373,7 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
         //añado al usuario a la tabla de manera automatica
         $user_id =Auth::id();
         $request->merge(['usuario_id'=>$user_id]);
+
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();

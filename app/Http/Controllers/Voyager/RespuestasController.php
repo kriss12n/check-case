@@ -696,4 +696,16 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
         // No result found, return empty array
         return response()->json([], 404);
     }
+
+    public function devolver($id){
+
+        $foro = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido','users.name1','users.surname1','users.surname2','users.avatar')->where('Foro.id',$id)->get();
+
+        //tareas para cuando despierte, content en el primer mensaje de la respuesta y el leido solo cuando se responda al cliente xd
+        return view('vendor.voyager.respuestas.browse',compact('foro',$foro));
+
+    }
+    public function enviar($request,$id){
+
+    }
 }
