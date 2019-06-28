@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-06-2019 a las 00:40:05
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.4
+-- Tiempo de generación: 29-06-2019 a las 00:53:50
+-- Versión del servidor: 10.3.15-MariaDB
+-- Versión de PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -50,6 +50,31 @@ CREATE TABLE `Bufete` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `Carousel`
+--
+
+CREATE TABLE `Carousel` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tittle` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subtittle` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `Carousel`
+--
+
+INSERT INTO `Carousel` (`id`, `image`, `tittle`, `subtittle`, `color`, `created_at`, `updated_at`) VALUES
+(2, 'carousel/June2019/eh926Z1yVxXkyQzZDZRj.jpg', 'Agencia de abogados', 'Somos los mejores en lo que hacemos', '#ffeaea', '2019-06-25 05:40:00', '2019-06-25 22:54:49'),
+(3, 'carousel/June2019/c5XOr5y78KGzAo2DTvOJ.jpg', 'Su mejores soluciones', 'se crean se manera espontanea', '#ffffff', '2019-06-25 22:56:00', '2019-06-25 22:59:11'),
+(4, 'carousel/June2019/HJXap2JLmjCF8ImyqOxZ.jpg', 'Somos los mejors en lo que hacemos', 'confie en nosotros', '#0011ff', '2019-06-26 00:44:17', '2019-06-26 00:44:17');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `Causas`
 --
 
@@ -80,14 +105,14 @@ CREATE TABLE `data_rows` (
   `field` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `required` tinyint(1) NOT NULL DEFAULT '0',
-  `browse` tinyint(1) NOT NULL DEFAULT '1',
-  `read` tinyint(1) NOT NULL DEFAULT '1',
-  `edit` tinyint(1) NOT NULL DEFAULT '1',
-  `add` tinyint(1) NOT NULL DEFAULT '1',
-  `delete` tinyint(1) NOT NULL DEFAULT '1',
-  `details` text COLLATE utf8mb4_unicode_ci,
-  `order` int(11) NOT NULL DEFAULT '1'
+  `required` tinyint(1) NOT NULL DEFAULT 0,
+  `browse` tinyint(1) NOT NULL DEFAULT 1,
+  `read` tinyint(1) NOT NULL DEFAULT 1,
+  `edit` tinyint(1) NOT NULL DEFAULT 1,
+  `add` tinyint(1) NOT NULL DEFAULT 1,
+  `delete` tinyint(1) NOT NULL DEFAULT 1,
+  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -123,10 +148,9 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (28, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8),
 (29, 4, 'date_task_start', 'timestamp', 'fecha y hora de inicio', 1, 1, 1, 1, 1, 0, '{}', 3),
 (30, 4, 'date_task_end', 'timestamp', 'fecha y hora de finalización', 0, 1, 1, 1, 1, 0, '{}', 4),
-(31, 4, 'origin', 'text', 'Origen', 1, 1, 1, 0, 0, 0, '{}', 9),
-(32, 4, 'for_whom_it_is', 'select_dropdown', 'Para quien es', 1, 1, 1, 1, 1, 0, '{}', 10),
-(33, 4, 'done', 'checkbox', '¿Realizada?', 1, 1, 1, 1, 1, 0, '{\"on\":\"Realizada\",\"off\":\"No realizada\",\"checked\":false}', 11),
-(34, 5, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(31, 4, 'origin', 'hidden', 'Origen', 0, 1, 1, 0, 1, 0, '{}', 9),
+(32, 4, 'for_whom_it_is', 'select_dropdown', 'Para quien es', 0, 1, 1, 1, 1, 0, '{}', 10),
+(34, 5, 'id', 'text', 'Id', 1, 1, 1, 0, 0, 0, '{}', 1),
 (35, 5, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 2),
 (36, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 3),
 (37, 5, 'title', 'text', 'Titulo', 1, 1, 1, 1, 1, 1, '{}', 4),
@@ -177,13 +201,15 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (133, 1, 'fono_movil', 'text', 'Fono Movil', 0, 1, 1, 1, 1, 1, '{}', 10),
 (135, 1, 'name1', 'text', 'Primer Nombre', 1, 1, 1, 1, 1, 1, '{}', 2),
 (136, 5, 'foro_belongsto_user_relationship', 'relationship', 'users', 0, 0, 0, 0, 0, 0, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"usuario_id\",\"key\":\"id\",\"label\":\"name1\",\"pivot_table\":\"Bufete\",\"pivot\":\"0\",\"taggable\":\"0\"}', 8),
-(137, 18, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(138, 18, 'image_slider', 'multiple_images', 'Imagen del carousel', 0, 1, 1, 1, 1, 1, '{}', 2),
-(139, 18, 'history_body', 'text', 'Historia de la empresa', 0, 1, 1, 1, 1, 1, '{}', 4),
-(140, 18, 'elements_body', 'text', 'Elementos del cuerpo', 0, 1, 1, 1, 1, 1, '{}', 5),
-(141, 18, 'header_slider', 'text', 'Texto en carousel', 0, 1, 1, 1, 1, 1, '{}', 3),
-(142, 18, 'services_body', 'text', 'Servicios', 0, 1, 1, 1, 1, 1, '{}', 6),
-(143, 5, 'leido', 'hidden', 'Leido', 0, 1, 1, 1, 1, 1, '{\"default\":0}', 6);
+(143, 5, 'leido', 'hidden', 'Leido', 0, 1, 1, 1, 1, 1, '{\"default\":0}', 6),
+(144, 19, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(145, 19, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"500\",\"height\":null}}', 2),
+(146, 19, 'tittle', 'text', 'Tittle', 0, 1, 1, 1, 1, 1, '{}', 3),
+(147, 19, 'subtittle', 'text', 'Subtittle', 0, 1, 1, 1, 1, 1, '{}', 4),
+(148, 19, 'color', 'color', 'Color', 0, 1, 1, 1, 1, 1, '{}', 5),
+(149, 19, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
+(150, 19, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
+(152, 4, 'diary_belongsto_user_relationship_1', 'relationship', 'Para quien es', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"for_whom_it_is\",\"key\":\"id\",\"label\":\"name1\",\"pivot_table\":\"Bufete\",\"pivot\":\"0\",\"taggable\":\"0\"}', 13);
 
 -- --------------------------------------------------------
 
@@ -202,9 +228,9 @@ CREATE TABLE `data_types` (
   `policy_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `controller` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `generate_permissions` tinyint(1) NOT NULL DEFAULT '0',
-  `server_side` tinyint(4) NOT NULL DEFAULT '0',
-  `details` text COLLATE utf8mb4_unicode_ci,
+  `generate_permissions` tinyint(1) NOT NULL DEFAULT 0,
+  `server_side` tinyint(4) NOT NULL DEFAULT 0,
+  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -214,17 +240,17 @@ CREATE TABLE `data_types` (
 --
 
 INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
-(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2019-05-13 07:00:22', '2019-06-16 14:20:39'),
+(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', '\\App\\Http\\Controllers\\Voyager\\UserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2019-05-13 07:00:22', '2019-06-27 13:42:11'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2019-05-13 07:00:22', '2019-06-09 12:14:27'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, '', '', 1, 0, NULL, '2019-05-13 07:00:22', '2019-05-13 07:00:22'),
-(4, 'Diary', 'diary', 'Agenda', 'Agenda', 'voyager-calendar', 'App\\Diary', NULL, '\\App\\Http\\Controllers\\Voyager\\DiariesController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-05-14 04:36:42', '2019-06-09 04:56:03'),
-(5, 'Foro', 'foro', 'Foro', 'Foro', NULL, 'App\\Foro', NULL, '\\App\\Http\\Controllers\\Voyager\\ForoController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-06-09 08:22:46', '2019-06-23 08:37:39'),
+(4, 'Diary', 'diary', 'Agenda', 'Agenda', 'voyager-calendar', 'App\\Diary', NULL, '\\App\\Http\\Controllers\\Voyager\\DiariesController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-05-14 04:36:42', '2019-06-25 10:15:19'),
+(5, 'Foro', 'foro', 'Foro', 'Foro', NULL, 'App\\Foro', NULL, '\\App\\Http\\Controllers\\Voyager\\ForoController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-06-09 08:22:46', '2019-06-26 10:15:07'),
 (7, 'Respuestas', 'respuestas', 'Respuesta', 'Respuestas', NULL, 'App\\Respuesta', NULL, '\\App\\Http\\Controllers\\Voyager\\RespuestasController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-06-09 12:14:38', '2019-06-23 01:55:43'),
 (8, 'Causas', 'causas', 'Causa', 'Causas', 'voyager-file-text', 'App\\Causa', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-06-11 09:54:49', '2019-06-11 09:58:52'),
 (13, 'Bufete', 'bufete', 'Bufete', 'Bufetes', 'voyager-bread', 'App\\Bufete', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-06-11 10:36:25', '2019-06-13 20:14:30'),
 (15, 'Juzgado', 'juzgado', 'Juzgado', 'Juzgados', 'voyager-company', 'App\\Juzgado', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2019-06-11 10:49:15', '2019-06-11 10:49:15'),
 (17, 'Tipo_Juzgado', 'tipo-juzgado', 'Tipo Juzgado', 'Tipo Juzgados', NULL, 'App\\TipoJuzgado', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2019-06-11 10:55:11', '2019-06-11 10:55:11'),
-(18, 'index', 'index', 'Index', 'Indices', 'voyager-hammer', 'App\\Index', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-06-18 21:04:04', '2019-06-18 21:07:53');
+(19, 'Carousel', 'carousel', 'Carousel', 'Carousels', NULL, 'App\\Carousel', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-06-25 05:31:48', '2019-06-25 22:54:20');
 
 -- --------------------------------------------------------
 
@@ -242,17 +268,17 @@ CREATE TABLE `Diary` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `date_task_end` datetime DEFAULT NULL,
   `origin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `for_whom_it_is` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `done` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `for_whom_it_is` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `Diary`
 --
 
-INSERT INTO `Diary` (`id`, `title_task`, `date_task_start`, `status_task`, `color`, `created_at`, `updated_at`, `date_task_end`, `origin`, `for_whom_it_is`, `done`) VALUES
-(17, 'Juicio de Herman', '2019-06-08 05:55:00', 'option2', '#ff0000', '2019-06-09 13:55:14', '2019-06-09 13:55:14', '2019-06-08 05:55:00', NULL, NULL, '0'),
-(18, 'Prueba', '2019-06-10 05:55:00', 'option2', '#ff3030', '2019-06-09 13:56:00', '2019-06-19 08:34:27', '2019-06-10 05:55:00', NULL, NULL, '0');
+INSERT INTO `Diary` (`id`, `title_task`, `date_task_start`, `status_task`, `color`, `created_at`, `updated_at`, `date_task_end`, `origin`, `for_whom_it_is`) VALUES
+(21, 'Juico con el profe Igor', '2019-06-25 14:30:00', 'option2', '#000000', '2019-06-25 10:45:53', '2019-06-25 10:45:53', '2019-06-25 16:55:00', 'Cristian', '3'),
+(22, 'Juicio Atrasao', '2019-06-24 15:00:00', 'option2', '#fc0000', '2019-06-25 23:01:19', '2019-06-25 23:01:34', '2019-06-24 16:01:00', 'Cristian', '3'),
+(23, 'Juicio de Sebastian Rivera', '2019-06-26 16:41:00', 'option2', '#3800e7', '2019-06-26 00:42:13', '2019-06-26 00:42:13', '2019-06-25 16:42:00', 'Cristian', '1');
 
 -- --------------------------------------------------------
 
@@ -275,14 +301,7 @@ CREATE TABLE `Foro` (
 --
 
 INSERT INTO `Foro` (`id`, `created_at`, `updated_at`, `title`, `content`, `usuario_id`, `leido`) VALUES
-(8, '2019-06-16 12:12:04', '2019-06-16 12:12:04', 'test1', '<p>un texto de prueba muy bonito</p>', 1, 0),
-(9, '2019-06-16 12:30:33', '2019-06-16 12:30:33', 'test2', '<p>asdasd</p>', 1, 1),
-(10, '2019-06-16 14:10:32', '2019-06-16 14:10:32', 'test3', '<p>asdasd</p>', 1, 1),
-(13, '2019-06-18 19:27:12', '2019-06-18 19:27:12', 'sdasd', '<p>asdasd</p>', 1, 0),
-(15, '2019-06-18 19:29:45', '2019-06-18 19:29:45', 'asdasd', '<p>asdasd</p>', 1, 1),
-(16, '2019-06-19 08:10:21', '2019-06-19 08:10:21', 'sdadsasd', '<p>dasdadsasd</p>', 1, 0),
-(17, '2019-06-23 08:37:15', '2019-06-23 08:37:15', 'test para notificaciones', '<p>lorem ipsum</p>', 1, 0),
-(18, '2019-06-23 08:37:57', '2019-06-23 08:37:57', 'test 6', '<p>lorem inpus</p>', 1, 0);
+(25, '2019-06-28 10:35:46', '2019-06-28 10:36:01', 'Tengo una duda', '<p>Hola, buenas tardes me fui preso porque usted solo sabe aplastarse las weas en la silla y nunca hace nada</p>', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -362,7 +381,7 @@ CREATE TABLE `menu_items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `route` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parameters` text COLLATE utf8mb4_unicode_ci
+  `parameters` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -387,8 +406,8 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (15, 1, 'Causas', '', '_self', 'voyager-file-text', NULL, 13, 3, '2019-06-11 09:54:49', '2019-06-11 10:38:11', 'voyager.causas.index', NULL),
 (19, 1, 'Bufetes', '', '_self', 'voyager-bread', '#000000', 13, 4, '2019-06-11 10:36:25', '2019-06-16 08:51:16', 'voyager.bufete.index', 'null'),
 (21, 1, 'Juzgados', '', '_self', 'voyager-company', NULL, 13, 5, '2019-06-11 10:49:15', '2019-06-16 08:51:16', 'voyager.juzgado.index', NULL),
-(23, 1, 'respuesta', '/admin/respuestas', '_self', NULL, '#000000', NULL, 8, '2019-06-11 11:33:30', '2019-06-11 11:35:31', NULL, ''),
-(24, 1, 'Indices', '', '_self', NULL, NULL, NULL, 9, '2019-06-18 21:04:04', '2019-06-18 21:04:04', 'voyager.index.index', NULL);
+(25, 1, 'Carrusel de imagenes', '', '_self', 'voyager-photos', '#000000', 26, 1, '2019-06-25 05:31:49', '2019-06-25 05:33:36', 'voyager.carousel.index', 'null'),
+(26, 1, 'Editar pagina principal', '', '_self', 'voyager-browser', '#000000', NULL, 9, '2019-06-25 05:32:46', '2019-06-25 05:34:03', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -524,11 +543,11 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (84, 'edit_Tipo_Juzgado', 'Tipo_Juzgado', '2019-06-11 10:55:11', '2019-06-11 10:55:11'),
 (85, 'add_Tipo_Juzgado', 'Tipo_Juzgado', '2019-06-11 10:55:11', '2019-06-11 10:55:11'),
 (86, 'delete_Tipo_Juzgado', 'Tipo_Juzgado', '2019-06-11 10:55:11', '2019-06-11 10:55:11'),
-(87, 'browse_index', 'index', '2019-06-18 21:04:04', '2019-06-18 21:04:04'),
-(88, 'read_index', 'index', '2019-06-18 21:04:04', '2019-06-18 21:04:04'),
-(89, 'edit_index', 'index', '2019-06-18 21:04:04', '2019-06-18 21:04:04'),
-(90, 'add_index', 'index', '2019-06-18 21:04:04', '2019-06-18 21:04:04'),
-(91, 'delete_index', 'index', '2019-06-18 21:04:04', '2019-06-18 21:04:04');
+(92, 'browse_Carousel', 'Carousel', '2019-06-25 05:31:49', '2019-06-25 05:31:49'),
+(93, 'read_Carousel', 'Carousel', '2019-06-25 05:31:49', '2019-06-25 05:31:49'),
+(94, 'edit_Carousel', 'Carousel', '2019-06-25 05:31:49', '2019-06-25 05:31:49'),
+(95, 'add_Carousel', 'Carousel', '2019-06-25 05:31:49', '2019-06-25 05:31:49'),
+(96, 'delete_Carousel', 'Carousel', '2019-06-25 05:31:49', '2019-06-25 05:31:49');
 
 -- --------------------------------------------------------
 
@@ -549,6 +568,7 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (1, 1),
 (1, 3),
 (1, 4),
+(1, 5),
 (2, 1),
 (2, 4),
 (3, 1),
@@ -661,11 +681,11 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (84, 1),
 (85, 1),
 (86, 1),
-(87, 1),
-(88, 1),
-(89, 1),
-(90, 1),
-(91, 1);
+(92, 1),
+(93, 1),
+(94, 1),
+(95, 1),
+(96, 1);
 
 -- --------------------------------------------------------
 
@@ -681,6 +701,18 @@ CREATE TABLE `Respuestas` (
   `user_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `foro_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `Respuestas`
+--
+
+INSERT INTO `Respuestas` (`id`, `texto`, `created_at`, `updated_at`, `user_id`, `foro_id`) VALUES
+(8, 'me importa una puta mierda', '2019-06-28 10:38:29', '2019-06-28 10:38:29', '1', '25'),
+(9, ':c', '2019-06-28 10:38:57', '2019-06-28 10:38:57', '3', '25'),
+(10, 'pero no me trate asi :c', '2019-06-28 10:46:12', '2019-06-28 10:46:12', '3', '25'),
+(12, 'bueno bueno, lo perdono', '2019-06-28 10:48:43', '2019-06-28 10:48:43', '1', '25'),
+(13, 'pero se quedara en la carcel', '2019-06-28 10:49:21', '2019-06-28 10:49:21', '1', '25'),
+(16, 'puta la wea', '2019-06-29 02:43:24', '2019-06-29 02:43:24', '3', '25');
 
 -- --------------------------------------------------------
 
@@ -717,10 +749,10 @@ CREATE TABLE `settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci,
-  `details` text COLLATE utf8mb4_unicode_ci,
+  `value` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order` int(11) NOT NULL DEFAULT '1',
+  `order` int(11) NOT NULL DEFAULT 1,
   `group` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -736,7 +768,7 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (5, 'admin.bg_image', 'Admin Background Image', 'settings/June2019/5tZGU9eigPPYk3CXL5hD.jpeg', '', 'image', 5, 'Admin'),
 (6, 'admin.title', 'Admin Title', 'Check-Case', '', 'text', 1, 'Admin'),
 (7, 'admin.description', 'Admin Description', 'Bienvenido a panel de administración de Check-Case, por favor inicie sesión y empecemos a trabajar', '', 'text', 2, 'Admin'),
-(8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
+(8, 'admin.loader', 'Admin Loader', 'settings/June2019/aDDHleuZJiyzMCEw1edi.png', '', 'image', 3, 'Admin'),
 (9, 'admin.icon_image', 'Admin Icon Image', 'settings/June2019/w1hO3mF2WUo4jyyF8q4S.jpeg', '', 'image', 4, 'Admin'),
 (10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin');
 
@@ -785,7 +817,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `settings` text COLLATE utf8mb4_unicode_ci,
+  `settings` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `name2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -803,8 +835,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name1`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `name2`, `surname1`, `surname2`, `rut`, `direccion`, `ciudad`, `fono`, `fono_movil`) VALUES
-(1, 1, 'Cristian', 'kriss@gmail.com', 'users/June2019/T9bKksDPfT2qbZF4CoQV.jpg', NULL, '$2y$10$2pYthsx/wYzyyyBGoOwYDOfJa1Mn954N4PqyF1TU.YXpB8u5OrZJG', '38bj2BejKF2h2IenzYD81ktaUvfGwDqFhpl8j3iP6htseT3nKAz1OMMPwvSs', '{\"locale\":\"es\"}', '2019-05-13 07:03:50', '2019-06-23 01:23:29', 'Esteban', 'Arias', 'Vallejos', '19823029-4', 'Francia 330', 'Chillan', NULL, '991518060'),
-(3, 4, 'Andres', 'andres@gmail.com', 'users/June2019/ZKFP52fAghTiM8nsSaoR.jpg', NULL, '$2y$10$9wGqDVlq8O2skKcftK0ss.bGBLLmWNTeDKNL4TdWTCJhaLfKevXk6', NULL, NULL, '2019-06-16 14:21:50', '2019-06-16 14:21:50', 'Leandro', 'Lopez', 'Ramirez', '19823029-4', 'Calle falsa 123', 'Yungay', '998877665', NULL);
+(1, 1, 'Cristian', 'kriss@gmail.com', 'users/June2019/ClByVoZDo53juJGjK2vT.png', NULL, '$2y$10$2pYthsx/wYzyyyBGoOwYDOfJa1Mn954N4PqyF1TU.YXpB8u5OrZJG', '5kaxaiOlhwLNDT2jKzKzOLEDftFZ3mMzjTlIVb7qCvQs5p7ZhuJErMyFMttH', '{\"locale\":\"es\"}', '2019-05-13 07:03:50', '2019-06-25 05:27:41', 'Esteban', 'Arias', 'Vallejos', '19823029-4', 'Francia 330', 'Chillan', NULL, '991518060'),
+(3, 5, 'Andres', 'andres@gmail.com', 'users/June2019/ZKFP52fAghTiM8nsSaoR.jpg', NULL, '$2y$10$9wGqDVlq8O2skKcftK0ss.bGBLLmWNTeDKNL4TdWTCJhaLfKevXk6', NULL, NULL, '2019-06-16 14:21:50', '2019-06-26 00:12:27', 'Leandro', 'Lopez', 'Ramirez', '19823029-4', 'Calle falsa 123', 'Yungay', '998877665', NULL),
+(4, 5, 'Ronald', 'Ronald@gmail.com', 'users/June2019/JBzAzd0a5jT7hYzmvECe.jpeg', NULL, '$2y$10$cSXMCQMRAhqPvAEaF8cbzu22lm3esKQbRjxTCnuKpg4Lx5DM1t2uy', NULL, NULL, '2019-06-25 10:51:23', '2019-06-26 00:11:37', 'Mandril', 'Quesillo', 'Panecillo', '20135723-3', 'calle falsa 123', 'Chillan', '112233445566', '112233445566'),
+(5, 5, 'Israel', 'israel@gmail.com', 'users/June2019/AWn0aFMw3vXWun39Rzwt.jpg', NULL, '$2y$10$WFSUA9LI9MBj3/zQeo4ZdOZ47W.8vOetmxGyMSXPLgyd.iy5Lv01K', NULL, NULL, '2019-06-27 13:58:41', '2019-06-27 13:58:41', 'Esteban', 'Gaete', 'Ramirez', '19823029-4', 'calle falsa 123', 'Chillan', '1122334455', '1122334455'),
+(27, 5, 'Bruno', 'bruno@checkcase.com', 'users/June2019/53iywfBE1CCQeU03qF0n.jpeg', NULL, '$2y$10$7kYRpt5mUcoiRWnW55.bD.6ReFyJJ.Z9lF8a/ZnvoT0DmyuGEm9d6', NULL, NULL, '2019-06-27 15:16:45', '2019-06-27 15:16:45', 'Alexander', 'Smith', 'Soto', '19823029-4', 'calle falsa 123', 'Chillan', '1122334455', '11223344');
 
 -- --------------------------------------------------------
 
@@ -825,6 +860,12 @@ CREATE TABLE `user_roles` (
 -- Indices de la tabla `Bufete`
 --
 ALTER TABLE `Bufete`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `Carousel`
+--
+ALTER TABLE `Carousel`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -973,6 +1014,12 @@ ALTER TABLE `Bufete`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `Carousel`
+--
+ALTER TABLE `Carousel`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `Causas`
 --
 ALTER TABLE `Causas`
@@ -982,25 +1029,25 @@ ALTER TABLE `Causas`
 -- AUTO_INCREMENT de la tabla `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- AUTO_INCREMENT de la tabla `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `Diary`
 --
 ALTER TABLE `Diary`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `Foro`
 --
 ALTER TABLE `Foro`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `index`
@@ -1024,7 +1071,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -1036,13 +1083,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT de la tabla `Respuestas`
 --
 ALTER TABLE `Respuestas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -1072,7 +1119,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Restricciones para tablas volcadas
