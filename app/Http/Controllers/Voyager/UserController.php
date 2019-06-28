@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers\Voyager;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
+use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\DB;
-use TCG\Voyager\Database\Schema\SchemaManager;
+use Illuminate\Support\Facades\Mail;
 use TCG\Voyager\Events\BreadDataAdded;
 use TCG\Voyager\Events\BreadDataDeleted;
-use TCG\Voyager\Events\BreadDataRestored;
 use TCG\Voyager\Events\BreadDataUpdated;
+use TCG\Voyager\Events\BreadDataRestored;
 use TCG\Voyager\Events\BreadImagesDeleted;
-use TCG\Voyager\Facades\Voyager;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
-use App\Foro;
-use App\Respuesta;
-use Illuminate\Support\Facades\Auth;
+use App\Mail\MessageReceived;
 
-class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
+class UserController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 {
     use BreadRelationshipParser;
 
@@ -35,9 +34,6 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
 
     public function index(Request $request)
     {
-
-
-
         // GET THE SLUG, ex. 'posts', 'pages', etc.
         $slug = $this->getSlug($request);
 
@@ -132,6 +128,7 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
         if (view()->exists("voyager::$slug.browse")) {
             $view = "voyager::$slug.browse";
         }
+
         return Voyager::view($view, compact(
             'dataType',
             'dataTypeContent',
@@ -355,19 +352,6 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
      */
     public function store(Request $request)
     {
-
-
-        //codigo mio
-        $post = Foro::findOrFail($request->post_id);
-        $id = $post->id;
-        Respuesta::create([
-            'body' => $request->body,
-            'user_id' => Auth::id(),
-            'post_id' => $post->id
-        ]);
-
-
-
         $slug = $this->getSlug($request);
 
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -381,14 +365,18 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
 
         event(new BreadDataAdded($dataType, $data));
 
+
+        //mail this
+
+        Mail::to('kriss12n@gmail.com')->queue(new MessageReceived($data));
+
         return redirect()
         ->route("voyager.{$dataType->slug}.index")
         ->with([
-                'message'    => __('voyager::generic.successfully_added_new')." {$dataType->display_name_singular}",
+                'message'    => __('Se registro de manera exitosa y se envio un correo con los datos de acceso al usuario')." {$dataType->display_name_singular}",
                 'alert-type' => 'success',
             ]);
     }
-
     //***************************************
     //                _____
     //               |  __ \
@@ -697,46 +685,4 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
         // No result found, return empty array
         return response()->json([], 404);
     }
-    public  function enviar(Request $request,$id){
-        $respuesta = new Respuesta();
-
-        $respuesta->texto = $request->mensaje;
-        $respuesta->foro_id = $id;
-        $respuesta->user_id = Auth::id();
-        $respuesta->save();
-        //agregar ordeby fecha de creacion
-        $foro = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido')->where('Foro.id',$id)->get();
-        if($foro->id = $id){
-            $respuestas = DB::table('Respuestas')->join('users','users.id','=','Respuestas.user_id')->select('Respuestas.id','Respuestas.user_id','Respuestas.foro_id','Respuestas.texto','Respuestas.created_at','users.name1','users.surname1','users.surname2','users.avatar')->orderBy('created_at','asc')->get();
-        }
-
-
-    return redirect()->route('respuestas',['id'=>$id,'respuestas'=>$respuestas]);
-
-    }
-
-    public function devolver($id){
-
-        //cambia el estado del post, de no leido a leido tras dar click a responder
-        $post = Foro::find($id);
-        $post->leido='1';
-        $post->save();
-        //-----------------------------------------------------------
-
-
-
-
-        //------------------------------------
-        $foro = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido','users.name1','users.surname1','users.surname2')->where('Foro.id',$id)->get();
-          //weas que se me ocurrieron ahora
-        if($foro->id = $id){
-            //se le chanta un orderby en el created_at para que los mensajes se ordenen
-            $respuestas = DB::table('Respuestas')->join('users','users.id','=','Respuestas.user_id')->select('Respuestas.id','Respuestas.user_id','Respuestas.foro_id','Respuestas.texto','Respuestas.created_at','users.name1','users.surname1','users.surname2','users.avatar')->orderBy('created_at','asc')->get();
-        }
-        //tareas para cuando despierte, content en el primer mensaje de la respuesta y el leido solo cuando se responda al cliente xd
-        return view('vendor.voyager.respuestas.browse',compact('foro',$foro,'id',$id,'respuestas',$respuestas));
-
-    }
-
-
 }

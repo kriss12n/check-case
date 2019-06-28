@@ -2,15 +2,19 @@
 @section('content')
 
 <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Respuestas</title>
     <style>
             .container {
-                border: 2px solid #dedede;
-                background-color: #f1f1f1;
                 border-radius: 5px;
                 padding: 10px;
                 margin: 10px 0;
                 margin-left: 50px;
+              }
+
+              .lighter{
+                border: 2px solid #dedede;
+                background-color: #f1f1f1;
               }
 
               /* Darker chat container */
@@ -47,6 +51,15 @@
                 float: right;
                 color: #aaa;
               }
+              .img-perfil{
+                height: 50px;
+                width: 35px;
+                background-repeat: no-repeat;
+                background-position: 50%;
+                border-radius: 50%;
+                background-size: 100% auto;
+
+            }
 
               /* Style time text */
               .time-left {
@@ -57,36 +70,73 @@
     </style>
 </head>
 <body>
-        @foreach ($foro as $foros)
-        <div class="row">
-        <div class="col-12 text-center"><h1>{{$foros->title}}</h1></div>
-        </div>
-        <div class="container">
-                <img src="{{ Voyager::image( $foros->avatar ) }}" alt="Error al cargar la imagen" class=" img-perfil">
+    @if (Auth::id() == '1')
+    @foreach ($foro as $foros)
+    <div class="row">
+    <div class="col-12 text-center"><h1>{{$foros->title}}</h1></div>
+    <div class="col-12 text-center "><h4>{!!$foros->content!!}</h4></div>
+    <div class="col-12 text-center "><h6> usted le esta respondiendo a: {{$foros->name1}} {{$foros->surname1}} {{$foros->surname2}}</h6></div>
+    <!-- agregar con quien esta chateando el abogado-->
+    </div>
+    @endforeach
+    @else
+    @foreach ($foro as $foros)
+    <div class="row">
+    <div class="col-12 text-center"><h1>{{$foros->title}}</h1></div>
+    <div class="col-12 text-center "><h4>{!!$foros->content!!}</h4></div>
+    <!-- agregar con quien esta chateando el abogado-->
+    </div>
+    @endforeach
+    @endif
 
-                <p>{!! $foros->content !!}</p>
-                <span class="time-right">{{$foros->created_at}}</span>
+<!--recorremos las respuestas-->
+
+@foreach ($respuestas as $resp)
+
+<!--aqui preguntamos si la respuesta pertenece al usuario logeado y si existen respuestas-->
+
+@if ($resp->user_id == Auth::id() && isset($resp) && $resp->foro_id == $id)
+<div class="container lighter">
+        <img src="{{ Voyager::image( $resp->avatar ) }}" alt="Avatar" class="right img-perfil">
+        <p>{{$resp->texto}}</p>
+        <span class="time-right">11:02</span>
+      </div>
+
+    <!--aqui simplemente colocamos que si existen para mostrar o ocultar los estilos-->
+
+@elseif(isset($resp) && $resp->foro_id == $id)
+<div class="container darker">
+        <img src="{{ Voyager::image( $resp->avatar ) }}" alt="Avatar" class="img-perfil">
+        <p>{{$resp->texto}}</p>
+        <span class="time-left">11:01</span>
+      </div>
+@else
+<!--en caso de no existir respuesta se mostrara este texto-->
+<div class="text-center">
+    <h2> aun no hay respuestas </h2>
+</div>
+@endif
+@endforeach
+
+              <div class="container" style="background-color:#eee;">
+                <div class="row">
+                    <form action="{{ route('enviar.respuesta',['id' =>$id]) }}" method="POST">
+                            {{ csrf_field() }}
+                        <div class="form-group">
+                    <div class="col-sm-11 col-md-11 col-lg-11 col-xl-11">
+                            <label for="mensaje">Escriba su mensaje:</label>
+                            <textarea class="form-control" rows="3" id="mensaje" name="mensaje"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 col-xl-1" style="margin-top:5vh;">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+
+                    </form>
+                </div>
               </div>
-        @endforeach
 
-
-              <div class="container darker">
-                <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right">
-                <p>Hey! Im fine. Thanks for asking!</p>
-                <span class="time-left">11:01</span>
-              </div>
-
-              <div class="container">
-                <img src="/w3images/bandmember.jpg" alt="Avatar">
-                <p>Sweet! So, what do you wanna do today?</p>
-                <span class="time-right">11:02</span>
-              </div>
-
-              <div class="container darker">
-                <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right">
-                <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-                <span class="time-left">11:05</span>
-              </div>
 
 </body>
 @endsection
+

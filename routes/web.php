@@ -17,7 +17,7 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 
     Route::get('/respuesta/{id}',array('as'=>'respuestas','uses' =>'Voyager\RespuestasController@devolver'));//crear una ruta que no exista en el bread y crear un metodo nuevo en el controller
-    Route::post('/respuesta/enviar/{id}',array('as'=>'respuestasEnviar','uses' =>'Voyager\RespuestasController@enviar'));
+    Route::post('/respuesta/enviar/{id}', ['uses' => 'Voyager\RespuestasController@enviar', 'as' => 'enviar.respuesta']);
 });
 
 

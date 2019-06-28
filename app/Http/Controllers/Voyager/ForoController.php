@@ -127,10 +127,10 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
 
            //retornando los post con inner join
            if(Auth::id() == 1 ){
-            $post = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido','users.name1','users.surname1','users.surname2','users.avatar')->get();
+            $postA = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido','users.name1','users.surname1','users.surname2','users.avatar','users.role_id')->get();
             //dd($post);
            }else{
-            $post = Foro::join('users','users.id','=','Foro.usuario_id')->where('usuario_id',Auth::id())->get();
+            $postC = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido','users.name1','users.surname1','users.surname2','users.avatar','users.role_id')->where('usuario_id',Auth::id())->get();
 
            }
 
@@ -156,7 +156,8 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
             'defaultSearchKey',
             'usesSoftDeletes',
             'showSoftDeleted',
-            'post',
+            'postA',
+            'postC',
             'user'
         ));
     }

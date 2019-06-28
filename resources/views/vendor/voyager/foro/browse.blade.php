@@ -48,15 +48,19 @@
     @endcan
 </div>
 
-@if($post->isEmpty())
+
+
+<div class="container" style="background: white;">
+    <!--vista cliente-->
+    @if(isset($postC))
+    @if($postC->isEmpty())
 <div class="container-fluid">
     <hr>
         <p class="text-center">No existen Post que mostrar</p>
 </div>
 @else
+@foreach ($postC as $posts)
 
-<div class="container" style="background: white;">
-@foreach ($post as $posts)
 @if ($posts->leido == 0)
 <hr>
     <div class="row no-leido">
@@ -68,14 +72,13 @@
            <h3 style="color:black">{{$posts->title}}</h3>
            <p style="color:gray;font-size:12px;">subido el : {{$posts->created_at}}
 
-por {{$posts->name1}} {{$posts->surname1}} {{$posts->surname2}}
+        por {{$posts->name1}} {{$posts->surname1}} {{$posts->surname2}}
 
  </p>
 
         <p style="font-size: 20px"> {!!str_limit($posts->content,255) !!}</p>
         </div>
         <div class="col-12 col-sm-2 col-md-2 col-xl-2" style="margin-top:5vh;">
-            <a href="/admin/respuesta/{{$posts->id}}" class="btn btn-danger">Responder <i class="far fa-comment"></i></a>
         </div>
     </div>
 
@@ -105,7 +108,65 @@ por {{$posts->name1}} {{$posts->surname1}} {{$posts->surname2}}
 
 @endforeach
 @endif
+@endif
 
+                            <!--vista admin-->
+@if(isset($postA))
+@if($postA->isEmpty())
+<div class="container-fluid">
+    <hr>
+        <p class="text-center">No existen Post que mostrar</p>
+</div>
+@else
+@foreach ($postA as $posts)
+
+@if ($posts->leido == 0)
+<hr>
+    <div class="row no-leido">
+        <div class="col-12  col-sm-2 col-md-2 col-xl-2">
+                <img src="{{ Voyager::image( $posts->avatar ) }}" alt="Error al cargar la imagen" class=" img-perfil">
+        </div>
+
+        <div class="col-12 col-sm-7 col-xl-7 col-md-7">
+           <h3 style="color:black">{{$posts->title}}</h3>
+           <p style="color:gray;font-size:12px;">subido el : {{$posts->created_at}}
+
+        por {{$posts->name1}} {{$posts->surname1}} {{$posts->surname2}}
+
+ </p>
+
+        <p style="font-size: 20px"> {!!str_limit($posts->content,255) !!}</p>
+        </div>
+        <div class="col-12 col-sm-2 col-md-2 col-xl-2" style="margin-top:5vh;">
+            <a href="/admin/respuesta/{{$posts->id}}" class="btn btn-danger">Responder <i class="far fa-comment"></i></a>
+        </div>
+    </div>
+@else
+<hr>
+    <div class="row">
+        <div class="col-12  col-sm-2 col-md-2 col-xl-2">
+                <img src="{{ Voyager::image( $posts->avatar ) }}" alt="Error al cargar la imagen" class=" img-perfil">
+        </div>
+
+        <div class="col-12 col-sm-7 col-xl-7 col-md-7">
+           <h3 style="color:black">{{$posts->title}}</h3>
+           <p style="color:gray;font-size:12px;">subido el : {{$posts->created_at}}
+
+por {{$posts->name1}} {{$posts->surname1}} {{$posts->surname2}}
+
+ </p>
+
+        <p style="font-size: 20px"> {!!str_limit($posts->content,255) !!}</p>
+        </div>
+        <div class="col-12 col-sm-2 col-md-2 col-xl-2" style="margin-top:5vh;">
+             <a href="/admin/respuesta/{{$posts->id}}"  class="btn btn-danger">Responder <i class="far fa-comment"></i></a>
+            </div>
+    </div>
+@endif
+
+@endforeach
+@endif
+@endif
 <hr>
 </div>
 
