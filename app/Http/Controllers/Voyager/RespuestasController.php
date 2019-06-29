@@ -711,7 +711,9 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
         }
 
 
-    return redirect()->route('respuestas',['id'=>$id,'respuestas'=>$respuestas]);
+    return response()->json(['message'=> 'Your data form is save' ],200);
+
+    //redirect()->route('respuestas',['id'=>$id,'respuestas'=>$respuestas]);
 
     }
 

@@ -18,6 +18,11 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/respuesta/{id}',array('as'=>'respuestas','uses' =>'Voyager\RespuestasController@devolver'));//crear una ruta que no exista en el bread y crear un metodo nuevo en el controller
     Route::post('/respuesta/enviar/{id}', ['uses' => 'Voyager\RespuestasController@enviar', 'as' => 'enviar.respuesta']);
+    Route::view('/chat', 'vendor.voyager.respuestas.chat',[
+
+        "data"=> App\Respuesta::all()
+
+    ]);
 });
 
 
