@@ -2,22 +2,124 @@
 @section('content')
 
 <head>
-    <title>Respuestas</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <style>
-            .container {
-                border-radius: 5px;
-                padding: 10px;
-                margin: 10px 0;
-                margin-left: 50px;
-              }
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+<title>Respuestas</title>
+        <style>
+        .container {
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+        margin-left: 50px;
+        }
 
-    </style>
+        .lighter{
+        border: 2px solid #dedede;
+        background-color: #f1f1f1;
+        }
+
+        /* Darker chat container */
+        .darker {
+        border-color: #ccc;
+        background-color: #ddd;
+        }
+
+        /* Clear floats */
+        .container::after {
+        content: "";
+        clear: both;
+        display: table;
+        }
+
+        /* Style images */
+        .container img {
+        float: left;
+        max-width: 60px;
+        width: 100%;
+        margin-right: 20px;
+        border-radius: 50%;
+        }
+
+        /* Style the right image */
+        .container img.right {
+        float: right;
+        margin-left: 20px;
+        margin-right:0;
+        }
+
+        /* Style time text */
+        .time-right {
+        float: right;
+        color: #aaa;
+        }
+        .img-perfil{
+        height: 50px;
+        width: 35px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        border-radius: 50%;
+        background-size: 100% auto;
+
+        }
+
+        /* Style time text */
+        .time-left {
+        float: left;
+        color: #999;
+        }
+
+        </style>
 </head>
 <body>
+<div id="chat">
+    @if (Auth::id() == '1')
+    @foreach ($foro as $foros)
+    <div class="row">
+    <div class="col-12 text-center"><h1>{{$foros->title}}</h1></div>
+    <div class="col-12 text-center "><h4>{!!$foros->content!!}</h4></div>
+    <div class="col-12 text-center "><h6> usted le esta respondiendo a: {{$foros->name1}} {{$foros->surname1}} {{$foros->surname2}}</h6></div>
+    <!-- agregar con quien esta chateando el abogado-->
+    </div>
+    @endforeach
+    @else
+    @foreach ($foro as $foros)
+    <div class="row">
+    <div class="col-12 text-center"><h1>{{$foros->title}}</h1></div>
+    <div class="col-12 text-center "><h4>{!!$foros->content!!}</h4></div>
+    <!-- agregar con quien esta chateando el abogado-->
+    </div>
+    @endforeach
+    @endif
 
-    <div id="chat">
+    <!--recorremos las respuestas-->
+
+    @foreach ($respuestas as $resp)
+
+    <!--aqui preguntamos si la respuesta pertenece al usuario logeado y si existen respuestas-->
+
+    @if ($resp->user_id == Auth::id() && isset($resp) && $resp->foro_id == $id)
+    <div class="container lighter">
+    <img src="{{ Voyager::image( $resp->avatar ) }}" alt="Avatar" class="right img-perfil">
+    <p>{{$resp->texto}}</p>
+    <span class="time-right">11:02</span>
+    </div>
+
+    <!--aqui simplemente colocamos que si existen para mostrar o ocultar los estilos-->
+
+    @elseif(isset($resp) && $resp->foro_id == $id)
+    <div class="container darker">
+    <img src="{{ Voyager::image( $resp->avatar ) }}" alt="Avatar" class="img-perfil">
+    <p>{{$resp->texto}}</p>
+    <span class="time-left">11:01</span>
+    </div>
+    @else
+    <!--en caso de no existir respuesta se mostrara este texto-->
+    <div class="text-center">
+    <h2> aun no hay respuestas </h2>
+    </div>
+    @endif
+    @endforeach
+
     </div>
 
               <div class="container" style="background-color:#eee;">
@@ -51,7 +153,7 @@
                 $('#formu').on('submit',function(e){
                         e.preventDefault();
 
-                var token = '{{csrf_token()}}';
+                    var token = '{{csrf_token()}}';
                    $.ajax({
 
                    type:'post',
@@ -59,20 +161,23 @@
                    _token:token,
                    data:$(this).serialize(),
                    success: function(msg){
-                    alert("se ha enviado el post correctamente");
+                    $("#chat").html(msg);
                    },fail:function(){
                        alert("fallo");
                    }
 
-                   
-                   });
 
+                   });
+                    return false;
                     });
 
-                    var auto_refresh = setInterval(
-                        function(){
-                            $("#chat").load('<?php echo url('admin/chat');?>').fadeIn("slow");
-                      },1000);
+
+
+                var auto = setInterval(function() {
+                $('#chat').load("{{ route('chat',['id' =>$id]) }}").fadeIn('slow');
+
+               }, 5000); //retornar cada 5 segundos si no me explota el pc
+
                 });
               </script>
 @endsection

@@ -1,1 +1,5 @@
-{{$data}}
+@section('chat')
+
+@endsection
+
+

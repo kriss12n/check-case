@@ -708,14 +708,64 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
         $foro = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido')->where('Foro.id',$id)->get();
         if($foro->id = $id){
             $respuestas = DB::table('Respuestas')->join('users','users.id','=','Respuestas.user_id')->select('Respuestas.id','Respuestas.user_id','Respuestas.foro_id','Respuestas.texto','Respuestas.created_at','users.name1','users.surname1','users.surname2','users.avatar')->orderBy('created_at','asc')->get();
+            //---------------------------
+            if (Auth::id() == '1'){
+            foreach ($foro as $foros){
+                echo'
+            <div class="row">
+            <div class="col-12 text-center"><h1>'.$foros->title.'</h1></div>
+            <div class="col-12 text-center "><h4>'.$foros->content.'</h4></div>
+            <div class="col-12 text-center "><h6> usted le esta respondiendo a: '.$foros->name1.'  '.$foros->surname1.' '.$foros->surname2.' </h6></div>
+            </div>
+            ';}
+            }else{
+            foreach ($foro as $foros){
+            echo'
+            <div class="row">
+            <div class="col-12 text-center"><h1>'.$foros->title.'</h1></div>
+            <div class="col-12 text-center "><h4>'.$foros->content.'</h4></div>
+            <!-- agregar con quien esta chateando el abogado-->
+            </div>
+            ';}
+            }
+
+            //recorremos las respuestas
+
+            foreach ($respuestas as $resp){
+            //aqui preguntamos si la respuesta pertenece al usuario logeado y si existen respuestas
+            if($resp->user_id == Auth::id() && isset($resp) && $resp->foro_id == $id){
+                echo'
+            <div class="container lighter">
+            <img src="'.Voyager::image( $resp->avatar ) .'" alt="Avatar" class="right img-perfil">
+            <p>'.$resp->texto.'</p>
+            <span class="time-right">11:02</span>
+            </div>
+                ';
+            //aqui simplemente colocamos que si existen para mostrar o ocultar los estilos
+
+            }elseif(isset($resp) && $resp->foro_id == $id){
+                echo'
+            <div class="container darker">
+            <img src="'. Voyager::image( $resp->avatar ) .'" alt="Avatar" class="img-perfil">
+            <p>'.$resp->texto.'</p>
+            <span class="time-left">11:01</span>
+            </div>
+            ';}else
+            echo'
+            <!--en caso de no existir respuesta se mostrara este texto-->
+            <div class="text-center">
+            <h2> aun no hay respuestas </h2>
+            </div>
+            ';}
+            }
+
+            //---------------------------
         }
 
 
-    return response()->json(['message'=> 'Your data form is save' ],200);
+
 
     //redirect()->route('respuestas',['id'=>$id,'respuestas'=>$respuestas]);
-
-    }
 
     public function devolver($id){
 
@@ -740,5 +790,69 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
 
     }
 
+
+
+
+    public function chat($id){
+      //weas que se me ocurrieron ahora
+      //traemos los datos para el titulo, el asunto del chat y con quien esta chateando
+        $foro = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido','users.name1','users.surname1','users.surname2')->where('Foro.id',$id)->get();
+
+      if($foro->id = $id){
+          //se le chanta un orderby en el created_at para que los mensajes se ordenen
+          $respuestas = DB::table('Respuestas')->join('users','users.id','=','Respuestas.user_id')->select('Respuestas.id','Respuestas.user_id','Respuestas.foro_id','Respuestas.texto','Respuestas.created_at','users.name1','users.surname1','users.surname2','users.avatar')->orderBy('created_at','asc')->get();
+
+          if (Auth::id() == '1'){
+            foreach ($foro as $foros){
+                echo'
+            <div class="row">
+            <div class="col-12 text-center"><h1>'.$foros->title.'</h1></div>
+            <div class="col-12 text-center "><h4>'.$foros->content.'</h4></div>
+            <div class="col-12 text-center "><h6> usted le esta respondiendo a: '.$foros->name1.'  '.$foros->surname1.' '.$foros->surname2.' </h6></div>
+            </div>
+            ';}
+            }else{
+            foreach ($foro as $foros){
+            echo'
+            <div class="row">
+            <div class="col-12 text-center"><h1>'.$foros->title.'</h1></div>
+            <div class="col-12 text-center "><h4>'.$foros->content.'</h4></div>
+            <!-- agregar con quien esta chateando el abogado-->
+            </div>
+            ';}
+            }
+
+            //recorremos las respuestas
+
+            foreach ($respuestas as $resp){
+            //aqui preguntamos si la respuesta pertenece al usuario logeado y si existen respuestas
+            if($resp->user_id == Auth::id() && isset($resp) && $resp->foro_id == $id){
+                echo'
+            <div class="container lighter">
+            <img src="'.Voyager::image( $resp->avatar ) .'" alt="Avatar" class="right img-perfil">
+            <p>'.$resp->texto.'</p>
+            <span class="time-right">11:02</span>
+            </div>
+                ';
+            //aqui simplemente colocamos que si existen para mostrar o ocultar los estilos
+
+            }elseif(isset($resp) && $resp->foro_id == $id){
+                echo'
+            <div class="container darker">
+            <img src="'. Voyager::image( $resp->avatar ) .'" alt="Avatar" class="img-perfil">
+            <p>'.$resp->texto.'</p>
+            <span class="time-left">11:01</span>
+            </div>
+            ';}else
+            echo'
+            <!--en caso de no existir respuesta se mostrara este texto-->
+            <div class="text-center">
+            <h2> aun no hay respuestas </h2>
+            </div>
+            ';}
+         //view('vendor.voyager.respuestas.chat',compact('foro',$foro,'id',$id,'respuestas',$respuestas));
+      }
+
+    }
 
 }
