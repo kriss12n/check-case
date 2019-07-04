@@ -740,25 +740,12 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
             <p>'.$resp->texto.'</p>
             <span class="time-right">11:02</span>
             </div>
-                ';
-            //aqui simplemente colocamos que si existen para mostrar o ocultar los estilos
 
-            }elseif(isset($resp) && $resp->foro_id == $id){
-                echo'
-            <div class="container darker">
-            <img src="'. Voyager::image( $resp->avatar ) .'" alt="Avatar" class="img-perfil">
-            <p>'.$resp->texto.'</p>
-            <span class="time-left">11:01</span>
-            </div>
-            ';}else
-            echo'
-            <!--en caso de no existir respuesta se mostrara este texto-->
-            <div class="text-center">
-            <h2> aun no hay respuestas </h2>
-            </div>
+
+
             ';}
             }
-
+        }
             //---------------------------
         }
 
@@ -843,13 +830,8 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
             <p>'.$resp->texto.'</p>
             <span class="time-left">11:01</span>
             </div>
-            ';}else
-            echo'
-            <!--en caso de no existir respuesta se mostrara este texto-->
-            <div class="text-center">
-            <h2> aun no hay respuestas </h2>
-            </div>
             ';}
+            }
          //view('vendor.voyager.respuestas.chat',compact('foro',$foro,'id',$id,'respuestas',$respuestas));
       }
 

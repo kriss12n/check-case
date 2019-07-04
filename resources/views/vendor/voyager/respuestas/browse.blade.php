@@ -112,11 +112,6 @@
     <p>{{$resp->texto}}</p>
     <span class="time-left">11:01</span>
     </div>
-    @else
-    <!--en caso de no existir respuesta se mostrara este texto-->
-    <div class="text-center">
-    <h2> aun no hay respuestas </h2>
-    </div>
     @endif
     @endforeach
 

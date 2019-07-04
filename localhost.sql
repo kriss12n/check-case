@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 29-06-2019 a las 00:53:50
+-- Tiempo de generación: 04-07-2019 a las 22:36:02
 -- Versión del servidor: 10.3.15-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -27,6 +27,28 @@ USE `check-case`;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `About`
+--
+
+CREATE TABLE `About` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `tittle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Contenido` varchar(2000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `About`
+--
+
+INSERT INTO `About` (`id`, `tittle`, `Contenido`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'Sobre nosotros', '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n<div>\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n</div>', 'about/July2019/ZjZcV86VaRon9T3uRG9Y.jpg', '2019-07-04 09:47:00', '2019-07-04 10:20:47');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `Bufete`
 --
 
@@ -46,31 +68,6 @@ CREATE TABLE `Bufete` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Carousel`
---
-
-CREATE TABLE `Carousel` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tittle` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `subtittle` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `Carousel`
---
-
-INSERT INTO `Carousel` (`id`, `image`, `tittle`, `subtittle`, `color`, `created_at`, `updated_at`) VALUES
-(2, 'carousel/June2019/eh926Z1yVxXkyQzZDZRj.jpg', 'Agencia de abogados', 'Somos los mejores en lo que hacemos', '#ffeaea', '2019-06-25 05:40:00', '2019-06-25 22:54:49'),
-(3, 'carousel/June2019/c5XOr5y78KGzAo2DTvOJ.jpg', 'Su mejores soluciones', 'se crean se manera espontanea', '#ffffff', '2019-06-25 22:56:00', '2019-06-25 22:59:11'),
-(4, 'carousel/June2019/HJXap2JLmjCF8ImyqOxZ.jpg', 'Somos los mejors en lo que hacemos', 'confie en nosotros', '#0011ff', '2019-06-26 00:44:17', '2019-06-26 00:44:17');
 
 -- --------------------------------------------------------
 
@@ -202,14 +199,30 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (135, 1, 'name1', 'text', 'Primer Nombre', 1, 1, 1, 1, 1, 1, '{}', 2),
 (136, 5, 'foro_belongsto_user_relationship', 'relationship', 'users', 0, 0, 0, 0, 0, 0, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"usuario_id\",\"key\":\"id\",\"label\":\"name1\",\"pivot_table\":\"Bufete\",\"pivot\":\"0\",\"taggable\":\"0\"}', 8),
 (143, 5, 'leido', 'hidden', 'Leido', 0, 1, 1, 1, 1, 1, '{\"default\":0}', 6),
-(144, 19, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(145, 19, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"500\",\"height\":null}}', 2),
-(146, 19, 'tittle', 'text', 'Tittle', 0, 1, 1, 1, 1, 1, '{}', 3),
-(147, 19, 'subtittle', 'text', 'Subtittle', 0, 1, 1, 1, 1, 1, '{}', 4),
-(148, 19, 'color', 'color', 'Color', 0, 1, 1, 1, 1, 1, '{}', 5),
-(149, 19, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
-(150, 19, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
-(152, 4, 'diary_belongsto_user_relationship_1', 'relationship', 'Para quien es', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"for_whom_it_is\",\"key\":\"id\",\"label\":\"name1\",\"pivot_table\":\"Bufete\",\"pivot\":\"0\",\"taggable\":\"0\"}', 13);
+(152, 4, 'diary_belongsto_user_relationship_1', 'relationship', 'Para quien es', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"for_whom_it_is\",\"key\":\"id\",\"label\":\"name1\",\"pivot_table\":\"Bufete\",\"pivot\":\"0\",\"taggable\":\"0\"}', 13),
+(153, 20, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(154, 20, 'image', 'image', 'Fondo', 1, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"1920\",\"height\":\"1280\"}}', 2),
+(155, 20, 'tittle', 'text', 'Titulo', 0, 1, 1, 1, 1, 1, '{}', 3),
+(156, 20, 'subtittle', 'text', 'Subtitulo', 0, 1, 1, 1, 1, 1, '{}', 5),
+(157, 20, 'button', 'text', 'Boton', 0, 1, 1, 1, 1, 1, '{}', 7),
+(158, 20, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 8),
+(159, 20, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9),
+(160, 20, 'color_tittle', 'color', 'Color del titulo', 1, 1, 1, 1, 1, 1, '{}', 4),
+(161, 20, 'color_subtittle', 'color', 'Color del subtitulo', 1, 1, 1, 1, 1, 1, '{}', 6),
+(162, 21, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(163, 21, 'tittle', 'text', 'Titulo', 1, 1, 1, 1, 1, 1, '{}', 2),
+(164, 21, 'Contenido', 'rich_text_box', 'Contenido', 1, 1, 1, 1, 1, 1, '{}', 3),
+(165, 21, 'image', 'image', 'Imagen', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"550\",\"height\":\"600\"}}', 4),
+(166, 21, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 5),
+(167, 21, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 6),
+(168, 22, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(169, 22, 'tittle', 'text', 'Tittle', 1, 1, 1, 1, 1, 1, '{}', 2),
+(170, 22, 'subtittle', 'text', 'Subtittle', 1, 1, 1, 1, 1, 1, '{}', 3),
+(171, 22, 'tittle_card', 'text', 'Tittle Card', 0, 1, 1, 1, 1, 1, '{}', 4),
+(172, 22, 'content_card', 'text', 'Content Card', 0, 1, 1, 1, 1, 1, '{}', 5),
+(173, 22, 'icon_card', 'text', 'Icon Card', 0, 1, 1, 1, 1, 1, '{}', 6),
+(174, 22, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 7),
+(175, 22, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8);
 
 -- --------------------------------------------------------
 
@@ -250,7 +263,9 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (13, 'Bufete', 'bufete', 'Bufete', 'Bufetes', 'voyager-bread', 'App\\Bufete', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-06-11 10:36:25', '2019-06-13 20:14:30'),
 (15, 'Juzgado', 'juzgado', 'Juzgado', 'Juzgados', 'voyager-company', 'App\\Juzgado', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2019-06-11 10:49:15', '2019-06-11 10:49:15'),
 (17, 'Tipo_Juzgado', 'tipo-juzgado', 'Tipo Juzgado', 'Tipo Juzgados', NULL, 'App\\TipoJuzgado', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2019-06-11 10:55:11', '2019-06-11 10:55:11'),
-(19, 'Carousel', 'carousel', 'Carousel', 'Carousels', NULL, 'App\\Carousel', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-06-25 05:31:48', '2019-06-25 22:54:20');
+(20, 'index', 'index', 'Index', 'Indices', NULL, 'App\\Index', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-04 04:24:03', '2019-07-04 07:30:31'),
+(21, 'About', 'about', 'About', 'Abouts', NULL, 'App\\About', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-04 09:36:44', '2019-07-04 10:20:33'),
+(22, 'services', 'services', 'Service', 'Services', NULL, 'App\\Service', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-04 21:04:16', '2019-07-04 21:05:01');
 
 -- --------------------------------------------------------
 
@@ -301,7 +316,8 @@ CREATE TABLE `Foro` (
 --
 
 INSERT INTO `Foro` (`id`, `created_at`, `updated_at`, `title`, `content`, `usuario_id`, `leido`) VALUES
-(25, '2019-06-28 10:35:46', '2019-06-28 10:36:01', 'Tengo una duda', '<p>Hola, buenas tardes me fui preso porque usted solo sabe aplastarse las weas en la silla y nunca hace nada</p>', 3, 1);
+(25, '2019-06-28 10:35:46', '2019-06-28 10:36:01', 'Tengo una duda', '<p>Hola, buenas tardes me fui preso porque usted solo sabe aplastarse las weas en la silla y nunca hace nada</p>', 3, 1),
+(26, '2019-06-30 02:33:48', '2019-06-30 02:34:04', 'test de chat', '<p>test de chat</p>', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -311,21 +327,22 @@ INSERT INTO `Foro` (`id`, `created_at`, `updated_at`, `title`, `content`, `usuar
 
 CREATE TABLE `index` (
   `id` int(10) UNSIGNED NOT NULL,
-  `image_slider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `history_body` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `elements_body` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `header_slider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `services_body` int(11) DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tittle` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subtittle` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `button` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `color_tittle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color_subtittle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `index`
 --
 
-INSERT INTO `index` (`id`, `image_slider`, `history_body`, `elements_body`, `header_slider`, `services_body`, `created_at`, `updated_at`) VALUES
-(1, '[\"index\\/June2019\\/q3EOzIa2qiLZPoQ8xzji.jpg\",\"index\\/June2019\\/Qr1VmVtipGoSzzJcAjO9.jpeg\",\"index\\/June2019\\/SFrytI8v1MLYWCktX6a4.jpg\"]', NULL, NULL, 'prueba', NULL, '2019-06-18 21:43:18', '2019-06-18 21:43:18');
+INSERT INTO `index` (`id`, `image`, `tittle`, `subtittle`, `button`, `created_at`, `updated_at`, `color_tittle`, `color_subtittle`) VALUES
+(1, 'index/July2019/QzozOx56LKSHMZYkSOX4.jpg', 'Check-Case', 'Bienvenido a Check-Case, nuestra aplicacion web para gestion de agencias de abogados', 'ver mas', '2019-07-04 07:03:24', '2019-07-04 07:03:24', '#ffffff', '#ffffff');
 
 -- --------------------------------------------------------
 
@@ -406,8 +423,10 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (15, 1, 'Causas', '', '_self', 'voyager-file-text', NULL, 13, 3, '2019-06-11 09:54:49', '2019-06-11 10:38:11', 'voyager.causas.index', NULL),
 (19, 1, 'Bufetes', '', '_self', 'voyager-bread', '#000000', 13, 4, '2019-06-11 10:36:25', '2019-06-16 08:51:16', 'voyager.bufete.index', 'null'),
 (21, 1, 'Juzgados', '', '_self', 'voyager-company', NULL, 13, 5, '2019-06-11 10:49:15', '2019-06-16 08:51:16', 'voyager.juzgado.index', NULL),
-(25, 1, 'Carrusel de imagenes', '', '_self', 'voyager-photos', '#000000', 26, 1, '2019-06-25 05:31:49', '2019-06-25 05:33:36', 'voyager.carousel.index', 'null'),
-(26, 1, 'Editar pagina principal', '', '_self', 'voyager-browser', '#000000', NULL, 9, '2019-06-25 05:32:46', '2019-06-25 05:34:03', NULL, '');
+(26, 1, 'Editar pagina principal', '', '_self', 'voyager-tools', '#000000', NULL, 8, '2019-06-25 05:32:46', '2019-07-04 09:42:51', NULL, ''),
+(27, 1, 'Inicio', '', '_self', 'voyager-browser', '#000000', 26, 1, '2019-07-04 04:24:03', '2019-07-04 09:42:27', 'voyager.index.index', 'null'),
+(28, 1, 'Sobre nosotros', '', '_self', 'voyager-people', '#000000', 26, 2, '2019-07-04 09:36:44', '2019-07-04 09:42:30', 'voyager.about.index', 'null'),
+(29, 1, 'Services', '', '_self', NULL, NULL, NULL, 9, '2019-07-04 21:04:16', '2019-07-04 21:04:16', 'voyager.services.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -543,11 +562,21 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (84, 'edit_Tipo_Juzgado', 'Tipo_Juzgado', '2019-06-11 10:55:11', '2019-06-11 10:55:11'),
 (85, 'add_Tipo_Juzgado', 'Tipo_Juzgado', '2019-06-11 10:55:11', '2019-06-11 10:55:11'),
 (86, 'delete_Tipo_Juzgado', 'Tipo_Juzgado', '2019-06-11 10:55:11', '2019-06-11 10:55:11'),
-(92, 'browse_Carousel', 'Carousel', '2019-06-25 05:31:49', '2019-06-25 05:31:49'),
-(93, 'read_Carousel', 'Carousel', '2019-06-25 05:31:49', '2019-06-25 05:31:49'),
-(94, 'edit_Carousel', 'Carousel', '2019-06-25 05:31:49', '2019-06-25 05:31:49'),
-(95, 'add_Carousel', 'Carousel', '2019-06-25 05:31:49', '2019-06-25 05:31:49'),
-(96, 'delete_Carousel', 'Carousel', '2019-06-25 05:31:49', '2019-06-25 05:31:49');
+(97, 'browse_index', 'index', '2019-07-04 04:24:03', '2019-07-04 04:24:03'),
+(98, 'read_index', 'index', '2019-07-04 04:24:03', '2019-07-04 04:24:03'),
+(99, 'edit_index', 'index', '2019-07-04 04:24:03', '2019-07-04 04:24:03'),
+(100, 'add_index', 'index', '2019-07-04 04:24:03', '2019-07-04 04:24:03'),
+(101, 'delete_index', 'index', '2019-07-04 04:24:03', '2019-07-04 04:24:03'),
+(102, 'browse_About', 'About', '2019-07-04 09:36:44', '2019-07-04 09:36:44'),
+(103, 'read_About', 'About', '2019-07-04 09:36:44', '2019-07-04 09:36:44'),
+(104, 'edit_About', 'About', '2019-07-04 09:36:44', '2019-07-04 09:36:44'),
+(105, 'add_About', 'About', '2019-07-04 09:36:44', '2019-07-04 09:36:44'),
+(106, 'delete_About', 'About', '2019-07-04 09:36:44', '2019-07-04 09:36:44'),
+(107, 'browse_services', 'services', '2019-07-04 21:04:16', '2019-07-04 21:04:16'),
+(108, 'read_services', 'services', '2019-07-04 21:04:16', '2019-07-04 21:04:16'),
+(109, 'edit_services', 'services', '2019-07-04 21:04:16', '2019-07-04 21:04:16'),
+(110, 'add_services', 'services', '2019-07-04 21:04:16', '2019-07-04 21:04:16'),
+(111, 'delete_services', 'services', '2019-07-04 21:04:16', '2019-07-04 21:04:16');
 
 -- --------------------------------------------------------
 
@@ -681,11 +710,21 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (84, 1),
 (85, 1),
 (86, 1),
-(92, 1),
-(93, 1),
-(94, 1),
-(95, 1),
-(96, 1);
+(97, 1),
+(98, 1),
+(99, 1),
+(100, 1),
+(101, 1),
+(102, 1),
+(103, 1),
+(104, 1),
+(105, 1),
+(106, 1),
+(107, 1),
+(108, 1),
+(109, 1),
+(110, 1),
+(111, 1);
 
 -- --------------------------------------------------------
 
@@ -712,7 +751,53 @@ INSERT INTO `Respuestas` (`id`, `texto`, `created_at`, `updated_at`, `user_id`, 
 (10, 'pero no me trate asi :c', '2019-06-28 10:46:12', '2019-06-28 10:46:12', '3', '25'),
 (12, 'bueno bueno, lo perdono', '2019-06-28 10:48:43', '2019-06-28 10:48:43', '1', '25'),
 (13, 'pero se quedara en la carcel', '2019-06-28 10:49:21', '2019-06-28 10:49:21', '1', '25'),
-(16, 'puta la wea', '2019-06-29 02:43:24', '2019-06-29 02:43:24', '3', '25');
+(16, 'puta la wea', '2019-06-29 02:43:24', '2019-06-29 02:43:24', '3', '25'),
+(53, 'oye po qlo', '2019-06-29 15:08:04', '2019-06-29 15:08:04', '3', '25'),
+(54, 'que wea queri', '2019-06-29 15:09:05', '2019-06-29 15:09:05', '1', '25'),
+(55, 'no me hables en ese tono wn', '2019-06-29 15:09:37', '2019-06-29 15:09:37', '3', '25'),
+(56, 'puta la wea', '2019-06-29 15:09:52', '2019-06-29 15:09:52', '1', '25'),
+(57, 'ya wn', '2019-06-29 15:10:46', '2019-06-29 15:10:46', '3', '25'),
+(58, 'oe', '2019-06-29 15:17:22', '2019-06-29 15:17:22', '1', '25'),
+(59, 'hola hola', '2019-06-29 15:18:28', '2019-06-29 15:18:28', '3', '25'),
+(60, 'wena', '2019-06-29 15:19:26', '2019-06-29 15:19:26', '1', '25'),
+(61, 'como estas?', '2019-06-29 15:25:26', '2019-06-29 15:25:26', '3', '25'),
+(62, 'bien y tu ?', '2019-06-29 15:25:35', '2019-06-29 15:25:35', '1', '25'),
+(63, 'bien', '2019-06-29 15:25:46', '2019-06-29 15:25:46', '3', '25'),
+(64, 'wena, que bueno', '2019-06-29 15:25:56', '2019-06-29 15:25:56', '1', '25'),
+(65, 'cual es su duda?', '2019-06-30 02:37:31', '2019-06-30 02:37:31', '1', '26'),
+(66, 'eh? ah, si mi duda', '2019-06-30 02:37:48', '2019-06-30 02:37:48', '4', '26'),
+(67, 'cuando podre comprar droga legalmente', '2019-06-30 02:38:29', '2019-06-30 02:38:29', '4', '26'),
+(68, 'uff, esta complicado realmente', '2019-06-30 02:39:20', '2019-06-30 02:39:20', '1', '26'),
+(69, 'wena', '2019-06-30 02:44:09', '2019-06-30 02:44:09', '1', '26'),
+(70, 'wena', '2019-06-30 02:46:17', '2019-06-30 02:46:17', '4', '26'),
+(71, 'wena', '2019-06-30 02:47:15', '2019-06-30 02:47:15', '4', '26'),
+(72, 'wena', '2019-06-30 02:47:57', '2019-06-30 02:47:57', '4', '26'),
+(73, 'wena', '2019-06-30 08:03:18', '2019-06-30 08:03:18', '1', '26'),
+(74, 'wena', '2019-06-30 08:03:30', '2019-06-30 08:03:30', '1', '26'),
+(75, 'pruebas', '2019-06-30 08:03:56', '2019-06-30 08:03:56', '1', '26'),
+(76, 'wena', '2019-06-30 08:06:30', '2019-06-30 08:06:30', '1', '26'),
+(77, 'probando', '2019-06-30 08:09:53', '2019-06-30 08:09:53', '1', '26'),
+(78, 'probando2', '2019-06-30 08:10:26', '2019-06-30 08:10:26', '1', '26'),
+(79, 'probando3', '2019-06-30 08:11:36', '2019-06-30 08:11:36', '1', '26'),
+(80, 'probando4', '2019-06-30 08:12:37', '2019-06-30 08:12:37', '1', '26'),
+(81, 'probando5', '2019-06-30 08:16:17', '2019-06-30 08:16:17', '1', '26'),
+(82, 'y que me cuentas ?', '2019-06-30 08:18:02', '2019-06-30 08:18:02', '1', '25'),
+(83, 'responde', '2019-06-30 08:18:31', '2019-06-30 08:18:31', '1', '25'),
+(84, 'oeee', '2019-06-30 08:18:44', '2019-06-30 08:18:44', '1', '26'),
+(85, 'yapo wn', '2019-06-30 10:16:55', '2019-06-30 10:16:55', '1', '25'),
+(86, 'yapo wn', '2019-06-30 10:17:09', '2019-06-30 10:17:09', '1', '25'),
+(87, 'yapo wn', '2019-06-30 10:17:57', '2019-06-30 10:17:57', '1', '25'),
+(88, 'yapo wn', '2019-06-30 10:18:08', '2019-06-30 10:18:08', '1', '25'),
+(89, 'hola, buenos dias', '2019-07-02 22:56:52', '2019-07-02 22:56:52', '4', '26'),
+(90, 'como esta?', '2019-07-02 22:58:24', '2019-07-02 22:58:24', '4', '26'),
+(91, 'bien y vo ?', '2019-07-02 23:01:34', '2019-07-02 23:01:34', '1', '26'),
+(92, 'qlo', '2019-07-02 23:03:10', '2019-07-02 23:03:10', '1', '26'),
+(93, 'wena', '2019-07-02 23:08:55', '2019-07-02 23:08:55', '4', '26'),
+(94, 'que pasa wn', '2019-07-02 23:25:32', '2019-07-02 23:25:32', '1', '26'),
+(95, 'nada wn nada', '2019-07-02 23:36:35', '2019-07-02 23:36:35', '4', '26'),
+(96, 'ya', '2019-07-03 01:29:53', '2019-07-03 01:29:53', '4', '26'),
+(97, 'wena', '2019-07-03 01:30:05', '2019-07-03 01:30:05', '1', '26'),
+(98, 'xd', '2019-07-03 01:30:33', '2019-07-03 01:30:33', '1', '26');
 
 -- --------------------------------------------------------
 
@@ -742,6 +827,23 @@ INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) V
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `services`
+--
+
+CREATE TABLE `services` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `tittle` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subtittle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tittle_card` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content_card` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon_card` varchar(155) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `settings`
 --
 
@@ -765,11 +867,11 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (2, 'site.description', 'Site Description', 'Site Description', '', 'text', 2, 'Site'),
 (3, 'site.logo', 'Site Logo', '', '', 'image', 3, 'Site'),
 (4, 'site.google_analytics_tracking_id', 'Google Analytics Tracking ID', NULL, '', 'text', 4, 'Site'),
-(5, 'admin.bg_image', 'Admin Background Image', 'settings/June2019/5tZGU9eigPPYk3CXL5hD.jpeg', '', 'image', 5, 'Admin'),
+(5, 'admin.bg_image', 'Admin Background Image', 'settings/July2019/TRAyGfx3YCzd6C8VHJeT.png', '', 'image', 5, 'Admin'),
 (6, 'admin.title', 'Admin Title', 'Check-Case', '', 'text', 1, 'Admin'),
 (7, 'admin.description', 'Admin Description', 'Bienvenido a panel de administración de Check-Case, por favor inicie sesión y empecemos a trabajar', '', 'text', 2, 'Admin'),
-(8, 'admin.loader', 'Admin Loader', 'settings/June2019/aDDHleuZJiyzMCEw1edi.png', '', 'image', 3, 'Admin'),
-(9, 'admin.icon_image', 'Admin Icon Image', 'settings/June2019/w1hO3mF2WUo4jyyF8q4S.jpeg', '', 'image', 4, 'Admin'),
+(8, 'admin.loader', 'Admin Loader', 'settings/July2019/ZYVHOToV10M9jUc6iNMv.png', '', 'image', 3, 'Admin'),
+(9, 'admin.icon_image', 'Admin Icon Image', 'settings/July2019/6BW6m5JGRew9y6ZCa5qj.jpeg', '', 'image', 4, 'Admin'),
 (10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin');
 
 -- --------------------------------------------------------
@@ -835,11 +937,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name1`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `name2`, `surname1`, `surname2`, `rut`, `direccion`, `ciudad`, `fono`, `fono_movil`) VALUES
-(1, 1, 'Cristian', 'kriss@gmail.com', 'users/June2019/ClByVoZDo53juJGjK2vT.png', NULL, '$2y$10$2pYthsx/wYzyyyBGoOwYDOfJa1Mn954N4PqyF1TU.YXpB8u5OrZJG', '5kaxaiOlhwLNDT2jKzKzOLEDftFZ3mMzjTlIVb7qCvQs5p7ZhuJErMyFMttH', '{\"locale\":\"es\"}', '2019-05-13 07:03:50', '2019-06-25 05:27:41', 'Esteban', 'Arias', 'Vallejos', '19823029-4', 'Francia 330', 'Chillan', NULL, '991518060'),
-(3, 5, 'Andres', 'andres@gmail.com', 'users/June2019/ZKFP52fAghTiM8nsSaoR.jpg', NULL, '$2y$10$9wGqDVlq8O2skKcftK0ss.bGBLLmWNTeDKNL4TdWTCJhaLfKevXk6', NULL, NULL, '2019-06-16 14:21:50', '2019-06-26 00:12:27', 'Leandro', 'Lopez', 'Ramirez', '19823029-4', 'Calle falsa 123', 'Yungay', '998877665', NULL),
-(4, 5, 'Ronald', 'Ronald@gmail.com', 'users/June2019/JBzAzd0a5jT7hYzmvECe.jpeg', NULL, '$2y$10$cSXMCQMRAhqPvAEaF8cbzu22lm3esKQbRjxTCnuKpg4Lx5DM1t2uy', NULL, NULL, '2019-06-25 10:51:23', '2019-06-26 00:11:37', 'Mandril', 'Quesillo', 'Panecillo', '20135723-3', 'calle falsa 123', 'Chillan', '112233445566', '112233445566'),
-(5, 5, 'Israel', 'israel@gmail.com', 'users/June2019/AWn0aFMw3vXWun39Rzwt.jpg', NULL, '$2y$10$WFSUA9LI9MBj3/zQeo4ZdOZ47W.8vOetmxGyMSXPLgyd.iy5Lv01K', NULL, NULL, '2019-06-27 13:58:41', '2019-06-27 13:58:41', 'Esteban', 'Gaete', 'Ramirez', '19823029-4', 'calle falsa 123', 'Chillan', '1122334455', '1122334455'),
-(27, 5, 'Bruno', 'bruno@checkcase.com', 'users/June2019/53iywfBE1CCQeU03qF0n.jpeg', NULL, '$2y$10$7kYRpt5mUcoiRWnW55.bD.6ReFyJJ.Z9lF8a/ZnvoT0DmyuGEm9d6', NULL, NULL, '2019-06-27 15:16:45', '2019-06-27 15:16:45', 'Alexander', 'Smith', 'Soto', '19823029-4', 'calle falsa 123', 'Chillan', '1122334455', '11223344');
+(1, 1, 'Cristian', 'kriss@gmail.com', 'users/July2019/aRHFYgmke8RUak12FA9V.jpg', NULL, '$2y$10$2pYthsx/wYzyyyBGoOwYDOfJa1Mn954N4PqyF1TU.YXpB8u5OrZJG', 'Yvlp33gAMasjvp13lXh29ROsBQYr8Me4qgF7XhZsqb0dju3RaXwsefx7v2DS', '{\"locale\":\"es\"}', '2019-05-13 07:03:50', '2019-07-02 23:16:23', 'Esteban', 'Arias', 'Vallejos', '19823029-4', 'Francia 330', 'Chillan', NULL, '991518060'),
+(4, 5, 'Ronald', 'Ronald@gmail.com', 'users/July2019/hWE0DM7Jx6wfs7MaCEjY.jpeg', NULL, '$2y$10$cSXMCQMRAhqPvAEaF8cbzu22lm3esKQbRjxTCnuKpg4Lx5DM1t2uy', NULL, NULL, '2019-06-25 10:51:23', '2019-07-02 23:35:40', 'Mandril', 'Quesillo', 'Panecillo', '20135723-3', 'calle falsa 123', 'Chillan', '112233445566', '112233445566');
 
 -- --------------------------------------------------------
 
@@ -857,15 +956,15 @@ CREATE TABLE `user_roles` (
 --
 
 --
--- Indices de la tabla `Bufete`
+-- Indices de la tabla `About`
 --
-ALTER TABLE `Bufete`
+ALTER TABLE `About`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `Carousel`
+-- Indices de la tabla `Bufete`
 --
-ALTER TABLE `Carousel`
+ALTER TABLE `Bufete`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -968,6 +1067,12 @@ ALTER TABLE `roles`
   ADD UNIQUE KEY `roles_name_unique` (`name`);
 
 --
+-- Indices de la tabla `services`
+--
+ALTER TABLE `services`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `settings`
 --
 ALTER TABLE `settings`
@@ -1008,16 +1113,16 @@ ALTER TABLE `user_roles`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `About`
+--
+ALTER TABLE `About`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `Bufete`
 --
 ALTER TABLE `Bufete`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `Carousel`
---
-ALTER TABLE `Carousel`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `Causas`
@@ -1029,13 +1134,13 @@ ALTER TABLE `Causas`
 -- AUTO_INCREMENT de la tabla `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
 
 --
 -- AUTO_INCREMENT de la tabla `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `Diary`
@@ -1047,7 +1152,7 @@ ALTER TABLE `Diary`
 -- AUTO_INCREMENT de la tabla `Foro`
 --
 ALTER TABLE `Foro`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `index`
@@ -1071,7 +1176,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -1083,19 +1188,25 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT de la tabla `Respuestas`
 --
 ALTER TABLE `Respuestas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `services`
+--
+ALTER TABLE `services`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `settings`

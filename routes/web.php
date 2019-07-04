@@ -29,3 +29,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 //para el index
 Route::get('/','IndexController@index');
+Route::get('/sobre-nosotros','AboutController@index');
+Route::get('/contactos','ContactController@index');
+Route::get('/nuestros-servicios','ServicesController@index');
+Route::get('/nuestro-equipo','TeamController@index');
