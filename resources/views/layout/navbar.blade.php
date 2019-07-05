@@ -4,7 +4,7 @@
           <!--<div id="logo" class="pull-left">
             <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
             <!-- Uncomment below if you prefer to use a text logo -->
-            <!--<h1><a href="#hero">Regna</a></h1>-->
+            <!-- <h1><a href="">Regna</a></h1>
           </div> -->
           <nav id="nav-menu-container">
                 <ul class="nav-menu" style="background: rgba(52, 59, 64, 0.9);">

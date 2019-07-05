@@ -32,8 +32,8 @@
   <section id="hero">
    <img src="{{Voyager::image($content->image)}}" style="top center;" alt="" id="hero">
     <div class="hero-container">
-      <h1>{{$content->tittle}}</h1>
-      <h2>{{$content->subtittle}}</h2>
+      <h1 style="color:{{$content->color_tittle}};" >{{$content->tittle}}</h1>
+      <h2 style="color:{{$content->color_subtittle}}; ">{{$content->subtittle}}</h2>
       <a href="" class="btn-get-started">Iniciar</a>
     </div>
   </section><!-- #hero -->

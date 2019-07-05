@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Service;
+use App\ServicesCard;
+
 
 class ServicesController extends Controller
 {
@@ -14,19 +16,9 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $service = Service::select('tittle','subtittle')->get();
-        $card = Service::select('tittle_card','content_card','icon_card')->get();
-        foreach($card as $card){
-            $cosa = $card->icon_card;
-            switch($cosa){
-
-
-
-
-            }
-        }
-        dd($cosa);
-        return view('services');
+        $service = Service::all();
+        $card = ServicesCard::all();
+        return view('services',compact('service',$service,'card',$card));
     }
 
     /**
@@ -93,5 +85,10 @@ class ServicesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function icon(){
+
+
     }
 }
