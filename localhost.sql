@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-07-2019 a las 22:36:02
+-- Tiempo de generación: 05-07-2019 a las 02:31:57
 -- Versión del servidor: 10.3.15-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -220,7 +220,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (170, 22, 'subtittle', 'text', 'Subtittle', 1, 1, 1, 1, 1, 1, '{}', 3),
 (171, 22, 'tittle_card', 'text', 'Tittle Card', 0, 1, 1, 1, 1, 1, '{}', 4),
 (172, 22, 'content_card', 'text', 'Content Card', 0, 1, 1, 1, 1, 1, '{}', 5),
-(173, 22, 'icon_card', 'text', 'Icon Card', 0, 1, 1, 1, 1, 1, '{}', 6),
+(173, 22, 'icon_card', 'select_dropdown', 'Icon Card', 0, 1, 1, 1, 1, 1, '{\"default\":\"option1\",\"options\":{\"option1\":\"pantalla\",\"option2\":\"diagrama de barra\",\"option3\":\"avion de papel\",\"option4\":\"foto\",\"option5\":\"camino\",\"option6\":\"bolsa de compras\",\"option7\":\"simbolo peso\"}}', 6),
 (174, 22, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 7),
 (175, 22, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8);
 
@@ -265,7 +265,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (17, 'Tipo_Juzgado', 'tipo-juzgado', 'Tipo Juzgado', 'Tipo Juzgados', NULL, 'App\\TipoJuzgado', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2019-06-11 10:55:11', '2019-06-11 10:55:11'),
 (20, 'index', 'index', 'Index', 'Indices', NULL, 'App\\Index', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-04 04:24:03', '2019-07-04 07:30:31'),
 (21, 'About', 'about', 'About', 'Abouts', NULL, 'App\\About', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-04 09:36:44', '2019-07-04 10:20:33'),
-(22, 'services', 'services', 'Service', 'Services', NULL, 'App\\Service', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-04 21:04:16', '2019-07-04 21:05:01');
+(22, 'services', 'services', 'Service', 'Services', NULL, 'App\\Service', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-04 21:04:16', '2019-07-05 01:39:19');
 
 -- --------------------------------------------------------
 
@@ -841,6 +841,13 @@ CREATE TABLE `services` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `services`
+--
+
+INSERT INTO `services` (`id`, `tittle`, `subtittle`, `tittle_card`, `content_card`, `icon_card`, `created_at`, `updated_at`) VALUES
+(1, 'Nuestros servicios', 'estos son los servicios que ofrecemos en  nuestra compañia', 'Ventas', 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500,', 'option6', '2019-07-05 01:40:29', '2019-07-05 01:40:29');
+
 -- --------------------------------------------------------
 
 --
@@ -1206,7 +1213,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `settings`

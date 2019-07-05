@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Service;
 
 class ServicesController extends Controller
 {
@@ -13,6 +14,18 @@ class ServicesController extends Controller
      */
     public function index()
     {
+        $service = Service::select('tittle','subtittle')->get();
+        $card = Service::select('tittle_card','content_card','icon_card')->get();
+        foreach($card as $card){
+            $cosa = $card->icon_card;
+            switch($cosa){
+
+
+
+
+            }
+        }
+        dd($cosa);
         return view('services');
     }
 
