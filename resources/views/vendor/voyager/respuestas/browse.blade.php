@@ -116,7 +116,6 @@
     @endforeach
 
     </div>
-
               <div class="container" style="background-color:#eee;">
                 <div class="row">
                     <form action="{{ route('enviar.respuesta',['id' =>$id]) }}" method="POST" id="formu">

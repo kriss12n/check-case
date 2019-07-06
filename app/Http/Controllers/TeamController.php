@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Team;
+use App\TeamCard;
 
 class TeamController extends Controller
 {
@@ -13,7 +15,9 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return view('team');
+        $team = Team::all();
+        $card = TeamCard::all();
+        return view('team',compact('team',$team,'card',$card));
     }
 
     /**

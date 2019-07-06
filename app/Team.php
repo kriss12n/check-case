@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-
-class TeamCard extends Model
+class Team extends Model
 {
-    protected $table ="team_cards";
+    protected $table ="team";
 }
