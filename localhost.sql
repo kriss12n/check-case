@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-07-2019 a las 23:08:58
+-- Tiempo de generación: 08-07-2019 a las 01:58:21
 -- Versión del servidor: 10.3.15-MariaDB
 -- Versión de PHP: 7.3.6
 
@@ -44,7 +44,7 @@ CREATE TABLE `About` (
 --
 
 INSERT INTO `About` (`id`, `tittle`, `Contenido`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'Sobre nosotros', '<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n<div>\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n</div>', 'about/July2019/VUW4weOc0Koh3gldoYkY.jpg', '2019-07-04 09:47:00', '2019-07-05 17:16:45');
+(1, 'Sobre nosotros', '<h3 style=\"text-align: left;\"><strong>Somos Itempus <br /></strong></h3>\r\n<h4 class=\"wppb-addon-title\" style=\"text-align: left;\">Empresa chilena, con m&aacute;s de 15 a&ntilde;os de experiencia en el desarrollo de soluciones inform&aacute;ticas para las necesidades y problematicas actuales.<br />Enfocados en generar aplicaciones con funcionalidades eficientes, prolijas, innovadoras y de alta usabilidad.</h4>\r\n<p>&nbsp;</p>', 'about/July2019/VUW4weOc0Koh3gldoYkY.jpg', '2019-07-04 09:47:00', '2019-07-07 03:53:16');
 
 -- --------------------------------------------------------
 
@@ -89,6 +89,36 @@ CREATE TABLE `Causas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Contacto`
+--
+
+CREATE TABLE `Contacto` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `tittle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subtittle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `direccion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telefono` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `google_plus` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `linkedin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `Ciudad` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `Contacto`
+--
+
+INSERT INTO `Contacto` (`id`, `tittle`, `subtittle`, `direccion`, `correo`, `telefono`, `twitter`, `facebook`, `instagram`, `google_plus`, `linkedin`, `created_at`, `updated_at`, `Ciudad`) VALUES
+(1, 'Contactanos', 'puedes contactarnos directamente o enviando un correo electronico', 'Av. Francia 330', 'contacto@itempusltda.cl', '+569 67378056', NULL, NULL, NULL, NULL, NULL, '2019-07-07 05:23:37', '2019-07-07 05:34:05', 'Chillan');
 
 -- --------------------------------------------------------
 
@@ -240,8 +270,29 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (193, 25, 'facebook', 'text', 'Facebook', 0, 1, 1, 1, 1, 1, '{}', 7),
 (194, 25, 'google_plus', 'text', 'Google Plus', 0, 1, 1, 1, 1, 1, '{}', 8),
 (195, 25, 'linkedin', 'text', 'Linkedin', 0, 1, 1, 1, 1, 1, '{}', 9),
-(196, 25, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 10),
-(197, 25, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 11);
+(196, 25, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, '{}', 10),
+(197, 25, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 11),
+(198, 26, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(199, 26, 'tittle', 'text', 'Titulo', 1, 1, 1, 1, 1, 1, '{}', 2),
+(200, 26, 'subtittle', 'text', 'Subtitulo', 1, 1, 1, 1, 1, 1, '{}', 3),
+(201, 26, 'direccion', 'text', 'Direccion', 1, 1, 1, 1, 1, 1, '{}', 5),
+(202, 26, 'correo', 'text', 'Correo', 1, 1, 1, 1, 1, 1, '{}', 6),
+(203, 26, 'telefono', 'text', 'Telefono', 1, 1, 1, 1, 1, 1, '{}', 7),
+(204, 26, 'twitter', 'text', 'Twitter', 0, 1, 1, 1, 1, 1, '{}', 8),
+(205, 26, 'facebook', 'text', 'Facebook', 0, 1, 1, 1, 1, 1, '{}', 9),
+(206, 26, 'instagram', 'text', 'Instagram', 0, 1, 1, 1, 1, 1, '{}', 10),
+(207, 26, 'google_plus', 'text', 'Google Plus', 0, 1, 1, 1, 1, 1, '{}', 11),
+(208, 26, 'linkedin', 'text', 'Linkedin', 0, 1, 1, 1, 1, 1, '{}', 12),
+(209, 26, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, '{}', 13),
+(210, 26, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 14),
+(211, 26, 'Ciudad', 'text', 'Ciudad', 1, 1, 1, 1, 1, 1, '{}', 4),
+(212, 27, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(213, 27, 'nombre', 'text', 'Nombre', 0, 1, 1, 1, 1, 1, '{}', 2),
+(214, 27, 'correo', 'text', 'Correo', 0, 1, 1, 1, 1, 1, '{}', 3),
+(215, 27, 'asunto', 'text', 'Asunto', 0, 1, 1, 1, 1, 1, '{}', 4),
+(216, 27, 'mensaje', 'text', 'Mensaje', 0, 1, 1, 1, 1, 1, '{}', 5),
+(217, 27, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
+(218, 27, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7);
 
 -- --------------------------------------------------------
 
@@ -287,7 +338,9 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (22, 'services', 'services', 'Service', 'Services', NULL, 'App\\Service', NULL, '\\App\\Http\\Controllers\\Voyager\\ServicesController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-04 21:04:16', '2019-07-05 06:04:18'),
 (23, 'services_cards', 'services-cards', 'Services Card', 'Services Cards', NULL, 'App\\ServicesCard', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-05 06:00:30', '2019-07-05 08:26:46'),
 (24, 'team', 'team', 'Team', 'Teams', NULL, 'App\\Team', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-05 17:22:51', '2019-07-05 19:05:34'),
-(25, 'team_cards', 'team-cards', 'Team Card', 'Team Cards', NULL, 'App\\TeamCard', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-05 17:23:05', '2019-07-05 22:16:37');
+(25, 'team_cards', 'team-cards', 'Team Card', 'Team Cards', NULL, 'App\\TeamCard', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-05 17:23:05', '2019-07-07 05:21:00'),
+(26, 'Contacto', 'contacto', 'Contacto', 'Contactos', NULL, 'App\\Contacto', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-07 05:20:46', '2019-07-07 05:33:51'),
+(27, 'Email', 'email', 'Email', 'Emails', NULL, 'App\\Email', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2019-07-07 05:50:06', '2019-07-07 05:50:06');
 
 -- --------------------------------------------------------
 
@@ -316,6 +369,42 @@ INSERT INTO `Diary` (`id`, `title_task`, `date_task_start`, `status_task`, `colo
 (21, 'Juico con el profe Igor', '2019-06-25 14:30:00', 'option2', '#000000', '2019-06-25 10:45:53', '2019-06-25 10:45:53', '2019-06-25 16:55:00', 'Cristian', '3'),
 (22, 'Juicio Atrasao', '2019-06-24 15:00:00', 'option2', '#fc0000', '2019-06-25 23:01:19', '2019-06-25 23:01:34', '2019-06-24 16:01:00', 'Cristian', '3'),
 (23, 'Juicio de Sebastian Rivera', '2019-06-26 16:41:00', 'option2', '#3800e7', '2019-06-26 00:42:13', '2019-06-26 00:42:13', '2019-06-25 16:42:00', 'Cristian', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Email`
+--
+
+CREATE TABLE `Email` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `asunto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mensaje` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `Email`
+--
+
+INSERT INTO `Email` (`id`, `nombre`, `correo`, `asunto`, `mensaje`, `created_at`, `updated_at`) VALUES
+(1, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '2019-07-07 06:34:27', '2019-07-07 06:34:27'),
+(3, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2019-07-07 07:23:31', '2019-07-07 07:23:31'),
+(4, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2019-07-07 07:25:17', '2019-07-07 07:25:17'),
+(5, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2019-07-07 07:26:16', '2019-07-07 07:26:16'),
+(6, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2019-07-07 07:26:34', '2019-07-07 07:26:34'),
+(7, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.', '2019-07-07 07:29:42', '2019-07-07 07:29:42'),
+(8, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.', '2019-07-07 07:32:12', '2019-07-07 07:32:12'),
+(9, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.', '2019-07-07 07:38:29', '2019-07-07 07:38:29'),
+(10, 'asd', 'asd@gmail.com', 'asd', 'asd', '2019-07-07 07:39:28', '2019-07-07 07:39:28'),
+(11, 'prueba 1', 'kriss@gmail.com', 'Duda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.', '2019-07-07 08:00:45', '2019-07-07 08:00:45'),
+(12, 'Cristian Arias', 'kriss@gmail.com', 'duda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.', '2019-07-07 08:02:13', '2019-07-07 08:02:13'),
+(13, 'Cristian Arias', 'kriss@gmail.com', 'duda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.', '2019-07-07 08:03:04', '2019-07-07 08:03:04'),
+(14, 'asd', 'asd@gmail.com', 'asd', 'asd', '2019-07-07 08:03:41', '2019-07-07 08:03:41'),
+(15, 'asd', 'asd@gmail.com', 'asd', 'asdasdasdasdasdasdasdasdasdasdsadasdasdasdasdasdasdadadadadadsadasdasmdjkadkjashduabsda', '2019-07-07 08:05:18', '2019-07-07 08:05:18');
 
 -- --------------------------------------------------------
 
@@ -451,7 +540,9 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (30, 1, 'Sobre Nosotros', '', '_self', 'voyager-info-circled', '#000000', 26, 2, '2019-07-05 04:47:25', '2019-07-05 22:00:36', 'voyager.about.index', 'null'),
 (32, 1, 'Cartas de servicio', '', '_self', 'voyager-photos', '#000000', 26, 4, '2019-07-05 06:00:30', '2019-07-05 21:58:56', 'voyager.services-cards.index', 'null'),
 (33, 1, 'Equipo', '', '_self', 'voyager-group', '#000000', 26, 5, '2019-07-05 17:22:51', '2019-07-05 21:59:18', 'voyager.team.index', 'null'),
-(34, 1, 'Cartas de equipo', '', '_self', 'voyager-file-text', '#000000', 26, 6, '2019-07-05 17:23:05', '2019-07-05 21:59:40', 'voyager.team-cards.index', 'null');
+(34, 1, 'Cartas de equipo', '', '_self', 'voyager-file-text', '#000000', 26, 6, '2019-07-05 17:23:05', '2019-07-05 21:59:40', 'voyager.team-cards.index', 'null'),
+(35, 1, 'Contactos', '', '_self', NULL, NULL, NULL, 9, '2019-07-07 05:20:46', '2019-07-07 05:20:46', 'voyager.contacto.index', NULL),
+(36, 1, 'Emails', '', '_self', NULL, NULL, NULL, 10, '2019-07-07 05:50:06', '2019-07-07 05:50:06', 'voyager.email.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -616,7 +707,17 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (123, 'read_team_cards', 'team_cards', '2019-07-05 17:23:05', '2019-07-05 17:23:05'),
 (124, 'edit_team_cards', 'team_cards', '2019-07-05 17:23:05', '2019-07-05 17:23:05'),
 (125, 'add_team_cards', 'team_cards', '2019-07-05 17:23:05', '2019-07-05 17:23:05'),
-(126, 'delete_team_cards', 'team_cards', '2019-07-05 17:23:05', '2019-07-05 17:23:05');
+(126, 'delete_team_cards', 'team_cards', '2019-07-05 17:23:05', '2019-07-05 17:23:05'),
+(127, 'browse_Contacto', 'Contacto', '2019-07-07 05:20:46', '2019-07-07 05:20:46'),
+(128, 'read_Contacto', 'Contacto', '2019-07-07 05:20:46', '2019-07-07 05:20:46'),
+(129, 'edit_Contacto', 'Contacto', '2019-07-07 05:20:46', '2019-07-07 05:20:46'),
+(130, 'add_Contacto', 'Contacto', '2019-07-07 05:20:46', '2019-07-07 05:20:46'),
+(131, 'delete_Contacto', 'Contacto', '2019-07-07 05:20:46', '2019-07-07 05:20:46'),
+(132, 'browse_Email', 'Email', '2019-07-07 05:50:06', '2019-07-07 05:50:06'),
+(133, 'read_Email', 'Email', '2019-07-07 05:50:06', '2019-07-07 05:50:06'),
+(134, 'edit_Email', 'Email', '2019-07-07 05:50:06', '2019-07-07 05:50:06'),
+(135, 'add_Email', 'Email', '2019-07-07 05:50:06', '2019-07-07 05:50:06'),
+(136, 'delete_Email', 'Email', '2019-07-07 05:50:06', '2019-07-07 05:50:06');
 
 -- --------------------------------------------------------
 
@@ -779,7 +880,17 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (123, 1),
 (124, 1),
 (125, 1),
-(126, 1);
+(126, 1),
+(127, 1),
+(128, 1),
+(129, 1),
+(130, 1),
+(131, 1),
+(132, 1),
+(133, 1),
+(134, 1),
+(135, 1),
+(136, 1);
 
 -- --------------------------------------------------------
 
@@ -1011,7 +1122,11 @@ CREATE TABLE `team_cards` (
 --
 
 INSERT INTO `team_cards` (`id`, `user_name`, `user_surname`, `image`, `role`, `twitter`, `facebook`, `google_plus`, `linkedin`, `created_at`, `updated_at`) VALUES
-(1, 'Daniel', 'Cardenas', 'team-cards/July2019/AC4a0dIWHMtq60OaMO28.jpg', 'Desarrollador', NULL, NULL, NULL, NULL, '2019-07-05 22:18:19', '2019-07-05 22:18:19');
+(1, 'Daniel', 'Cárdenas', 'team-cards/July2019/AC4a0dIWHMtq60OaMO28.jpg', 'DIrector de desarrollo e implementación', NULL, NULL, NULL, NULL, '2019-07-05 22:18:00', '2019-07-07 05:00:33'),
+(2, 'Daniel', 'Navarrete', 'team-cards/July2019/yFI9qFtNgZnLAr4Qbv1t.jpg', 'DIrector de analisis y diseño', NULL, NULL, NULL, NULL, '2019-07-07 04:59:53', '2019-07-07 04:59:53'),
+(3, 'Gregorio', 'Orellana', 'team-cards/July2019/qCDuSn60rEL5yb55CTtI.jpg', 'Desarrollador', NULL, NULL, NULL, NULL, '2019-07-07 05:04:40', '2019-07-07 05:04:40'),
+(4, 'Sebastian', 'Rivera', 'team-cards/July2019/atS8Zvo2sbClMVXpEABZ.jpg', 'Desarrollador', NULL, NULL, NULL, NULL, '2019-07-07 05:05:00', '2019-07-07 05:05:00'),
+(5, 'Cristian', 'Arias', 'team-cards/July2019/rCZfwg9QfJe3E0ux6nz7.png', 'Desarrollador', NULL, NULL, NULL, NULL, '2019-07-07 05:05:30', '2019-07-07 05:05:30');
 
 -- --------------------------------------------------------
 
@@ -1113,6 +1228,12 @@ ALTER TABLE `Causas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `Contacto`
+--
+ALTER TABLE `Contacto`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `data_rows`
 --
 ALTER TABLE `data_rows`
@@ -1131,6 +1252,12 @@ ALTER TABLE `data_types`
 -- Indices de la tabla `Diary`
 --
 ALTER TABLE `Diary`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `Email`
+--
+ALTER TABLE `Email`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1288,22 +1415,34 @@ ALTER TABLE `Causas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `Contacto`
+--
+ALTER TABLE `Contacto`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
 
 --
 -- AUTO_INCREMENT de la tabla `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `Diary`
 --
 ALTER TABLE `Diary`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT de la tabla `Email`
+--
+ALTER TABLE `Email`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `Foro`
@@ -1333,7 +1472,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -1345,7 +1484,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT de la tabla `Respuestas`
@@ -1387,7 +1526,7 @@ ALTER TABLE `team`
 -- AUTO_INCREMENT de la tabla `team_cards`
 --
 ALTER TABLE `team_cards`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `Tipo_Juzgado`
