@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Contacto;
+use App\Mail\MessageForm;
+use App\Email;
 
 class ContactController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of thes\Mail resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('contact');
+        $contacto = Contacto::all();
+        return view('contact',compact('contacto',$contacto));
     }
 
     /**
@@ -34,7 +39,17 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $correo = new Email();
+        $correo->nombre = $request->name;
+        $correo->correo = $request->email;
+        $correo->asunto = $request->subject;
+        $correo->mensaje = $request->mensaje;
+        $correo->save();
+
+        //correo para mi xd
+        Mail::to('kriss12n@gmail.com')->queue(new MessageForm($correo));
+        return  redirect('/contactos')->with('alert','Mensaje Enviado');
     }
 
     /**

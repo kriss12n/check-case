@@ -129,7 +129,6 @@
                     <div class="col-sm-1 col-md-1 col-lg-1 col-xl-1" style="margin-top:5vh;">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
                     </div>
-
                     </form>
                 </div>
               </div>
