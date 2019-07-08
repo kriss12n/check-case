@@ -152,6 +152,7 @@ return [
         'widgets' => [
             '\\App\\Widgets\\Notifications',
             '\\App\\Widgets\\Posts',
+            '\\App\\Widgets\\Emails',
         ],
 
     ],

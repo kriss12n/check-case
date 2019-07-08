@@ -29,8 +29,4 @@ Route::group(['prefix' => 'admin'], function () {
 
 //para el index
 Route::get('/','IndexController@index');
-Route::get('/sobre-nosotros','AboutController@index');
-Route::get('/contactos','ContactController@index');
-Route::get('/nuestros-servicios','ServicesController@index');
-Route::get('/nuestro-equipo','TeamController@index');
-Route::post('/contactos',array('as'=>'enviar.correo','uses' =>'ContactController@store'));
+Route::post('/enviar',array('as'=>'enviar.correo','uses' =>'IndexController@store'));

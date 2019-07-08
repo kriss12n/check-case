@@ -7,11 +7,11 @@
     <title>Mensaje recibido</title>
 </head>
 <body>
-    
+
     <p>recibiste un mensaje de: {{$msg['nombre']}}</p>
-    <p>con asunto:{{$msg['asunto'] }}</p> 
+    <p>con asunto:{{$msg['asunto'] }}</p>
     <p>su correo es: {{$msg['correo']}} </p>
-    <p>:{{$msg['mensaje']}}</p>
-    <p></p>   
+    <p>{{$msg['mensaje']}}</p>
+    <p></p>
 </body>
 </html>

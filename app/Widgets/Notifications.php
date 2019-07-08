@@ -43,7 +43,7 @@ class Notifications extends BaseDimmer
                 'text' => __('Ver agenda'),
                 'link' => route('voyager.diary.index'),
             ],
-            'image' => voyager_asset('images/widget-backgrounds/01.jpg'),
+            'image' => 'images/eventos.jpg',
         ]));
     }
 

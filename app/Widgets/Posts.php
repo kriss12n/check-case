@@ -40,7 +40,7 @@ class Posts extends BaseDimmer
                     'text' => __('ir al foro'),
                     'link' => route('voyager.foro.index'),
                 ],
-                'image' => voyager_asset('images/widget-backgrounds/02.jpg'),
+                'image' => 'images/post.jpg',
             ]));
         }else{
             $count = Foro::all()->where('leido',0)->count();
@@ -53,7 +53,7 @@ class Posts extends BaseDimmer
                     'text' => __('ir al foro'),
                     'link' => route('voyager.foro.index'),
                 ],
-                'image' => voyager_asset('images/widget-backgrounds/02.jpg'),
+                'image' => 'images/post.jpg',
             ]));
         }
 
