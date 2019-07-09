@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-07-2019 a las 01:58:21
--- Versión del servidor: 10.3.15-MariaDB
--- Versión de PHP: 7.3.6
+-- Tiempo de generación: 09-07-2019 a las 17:14:43
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,7 +44,30 @@ CREATE TABLE `About` (
 --
 
 INSERT INTO `About` (`id`, `tittle`, `Contenido`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'Sobre nosotros', '<h3 style=\"text-align: left;\"><strong>Somos Itempus <br /></strong></h3>\r\n<h4 class=\"wppb-addon-title\" style=\"text-align: left;\">Empresa chilena, con m&aacute;s de 15 a&ntilde;os de experiencia en el desarrollo de soluciones inform&aacute;ticas para las necesidades y problematicas actuales.<br />Enfocados en generar aplicaciones con funcionalidades eficientes, prolijas, innovadoras y de alta usabilidad.</h4>\r\n<p>&nbsp;</p>', 'about/July2019/VUW4weOc0Koh3gldoYkY.jpg', '2019-07-04 09:47:00', '2019-07-07 03:53:16');
+(1, 'Sobre Check-Case', '<h3 style=\"text-align: left;\"><strong>Check-Case<br /></strong></h3>\r\n<h4 class=\"wppb-addon-title\" style=\"text-align: left;\">es una aplicacion web la cual ayudara a gestionar y organizar mejor su agencia, por medio de una agenda de eventos que le alertaran sobre cualquier evento registrado con anterioridad en el sistema, un foro donde puede conversar en tiempo real con sus clientes, y una pagina principal completamente modificable a su antojo.</h4>\r\n<p>&nbsp;</p>', 'about/July2019/jltsKNL5C1VhHCxdvZ6n.jpg', '2019-07-04 09:47:00', '2019-07-08 05:32:01');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `About_Card`
+--
+
+CREATE TABLE `About_Card` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `card_tittle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `card_content` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `card_icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `About_Card`
+--
+
+INSERT INTO `About_Card` (`id`, `card_tittle`, `card_content`, `card_icon`, `created_at`, `updated_at`) VALUES
+(1, 'Agenda', 'Una agenda de eventos para una buena organización', 'fa fa-calendar', '2019-07-08 05:37:14', '2019-07-08 05:37:14'),
+(2, 'Bajo costo', 'Tiene un costo mensual de $$$', 'fa fa-dollar', '2019-07-08 05:37:56', '2019-07-08 05:37:56');
 
 -- --------------------------------------------------------
 
@@ -132,14 +155,14 @@ CREATE TABLE `data_rows` (
   `field` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `required` tinyint(1) NOT NULL DEFAULT 0,
-  `browse` tinyint(1) NOT NULL DEFAULT 1,
-  `read` tinyint(1) NOT NULL DEFAULT 1,
-  `edit` tinyint(1) NOT NULL DEFAULT 1,
-  `add` tinyint(1) NOT NULL DEFAULT 1,
-  `delete` tinyint(1) NOT NULL DEFAULT 1,
-  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT 1
+  `required` tinyint(1) NOT NULL DEFAULT '0',
+  `browse` tinyint(1) NOT NULL DEFAULT '1',
+  `read` tinyint(1) NOT NULL DEFAULT '1',
+  `edit` tinyint(1) NOT NULL DEFAULT '1',
+  `add` tinyint(1) NOT NULL DEFAULT '1',
+  `delete` tinyint(1) NOT NULL DEFAULT '1',
+  `details` text COLLATE utf8mb4_unicode_ci,
+  `order` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -287,12 +310,19 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (210, 26, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 14),
 (211, 26, 'Ciudad', 'text', 'Ciudad', 1, 1, 1, 1, 1, 1, '{}', 4),
 (212, 27, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(213, 27, 'nombre', 'text', 'Nombre', 0, 1, 1, 1, 1, 1, '{}', 2),
-(214, 27, 'correo', 'text', 'Correo', 0, 1, 1, 1, 1, 1, '{}', 3),
+(213, 27, 'nombre', 'text', 'Nombre', 1, 1, 1, 1, 1, 1, '{}', 2),
+(214, 27, 'correo', 'text', 'Correo', 1, 1, 1, 1, 1, 1, '{}', 3),
 (215, 27, 'asunto', 'text', 'Asunto', 0, 1, 1, 1, 1, 1, '{}', 4),
-(216, 27, 'mensaje', 'text', 'Mensaje', 0, 1, 1, 1, 1, 1, '{}', 5),
-(217, 27, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
-(218, 27, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7);
+(216, 27, 'mensaje', 'text', 'Mensaje', 1, 1, 1, 1, 1, 1, '{}', 5),
+(217, 27, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 7),
+(218, 27, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8),
+(219, 27, 'estado', 'hidden', 'Estado', 0, 1, 1, 0, 1, 0, '{\"default\":\"no leido\"}', 6),
+(220, 28, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(221, 28, 'card_tittle', 'text', 'Card Tittle', 1, 1, 1, 1, 1, 1, '{}', 2),
+(222, 28, 'card_content', 'text', 'Card Content', 1, 1, 1, 1, 1, 1, '{}', 3),
+(223, 28, 'card_icon', 'select_dropdown', 'Card Icon', 1, 1, 1, 1, 1, 1, '{\"default\":\"option1\",\"options\":{\"option1\":\"selecione un icono\",\"fa fa-desktop\":\"pantalla\",\"fa fa-bar-chart\":\"diagrama de barra\",\"fa fa-paper-plane\":\"avion de papel\",\"fa fa-photo\":\"foto\",\"fa fa-road\":\"camino\",\"fa fa-shopping-bag\":\"bolsa de compras\",\"fa fa-dollar\":\"simbolo peso\",\"fa fa-gavel\":\"mazo\",\"fa fa-book\":\"libro\",\"fa fa-comments\":\"globo de dialogo\",\"fa fa-calendar\":\"calendario\",\"fa fa-group\":\"personas\",\"fa fa-code\":\"codigo\",\"fa fa-graduation-cap\":\"graduacion\"}}', 4),
+(224, 28, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(225, 28, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 6);
 
 -- --------------------------------------------------------
 
@@ -311,9 +341,9 @@ CREATE TABLE `data_types` (
   `policy_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `controller` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `generate_permissions` tinyint(1) NOT NULL DEFAULT 0,
-  `server_side` tinyint(4) NOT NULL DEFAULT 0,
-  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `generate_permissions` tinyint(1) NOT NULL DEFAULT '0',
+  `server_side` tinyint(4) NOT NULL DEFAULT '0',
+  `details` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -326,7 +356,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', '\\App\\Http\\Controllers\\Voyager\\UserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2019-05-13 07:00:22', '2019-06-27 13:42:11'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2019-05-13 07:00:22', '2019-06-09 12:14:27'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, '', '', 1, 0, NULL, '2019-05-13 07:00:22', '2019-05-13 07:00:22'),
-(4, 'Diary', 'diary', 'Agenda', 'Agenda', 'voyager-calendar', 'App\\Diary', NULL, '\\App\\Http\\Controllers\\Voyager\\DiariesController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-05-14 04:36:42', '2019-06-25 10:15:19'),
+(4, 'Diary', 'diary', 'Agenda', 'Agenda', 'voyager-calendar', 'App\\Diary', NULL, '\\App\\Http\\Controllers\\Voyager\\DiariesController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-05-14 04:36:42', '2019-07-08 04:29:23'),
 (5, 'Foro', 'foro', 'Foro', 'Foro', NULL, 'App\\Foro', NULL, '\\App\\Http\\Controllers\\Voyager\\ForoController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-06-09 08:22:46', '2019-06-26 10:15:07'),
 (7, 'Respuestas', 'respuestas', 'Respuesta', 'Respuestas', NULL, 'App\\Respuesta', NULL, '\\App\\Http\\Controllers\\Voyager\\RespuestasController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-06-09 12:14:38', '2019-06-23 01:55:43'),
 (8, 'Causas', 'causas', 'Causa', 'Causas', 'voyager-file-text', 'App\\Causa', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-06-11 09:54:49', '2019-06-11 09:58:52'),
@@ -338,9 +368,10 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (22, 'services', 'services', 'Service', 'Services', NULL, 'App\\Service', NULL, '\\App\\Http\\Controllers\\Voyager\\ServicesController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-04 21:04:16', '2019-07-05 06:04:18'),
 (23, 'services_cards', 'services-cards', 'Services Card', 'Services Cards', NULL, 'App\\ServicesCard', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-05 06:00:30', '2019-07-05 08:26:46'),
 (24, 'team', 'team', 'Team', 'Teams', NULL, 'App\\Team', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-05 17:22:51', '2019-07-05 19:05:34'),
-(25, 'team_cards', 'team-cards', 'Team Card', 'Team Cards', NULL, 'App\\TeamCard', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-05 17:23:05', '2019-07-07 05:21:00'),
+(25, 'team_cards', 'team-cards', 'Team Card', 'Team Cards', NULL, 'App\\TeamCard', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-05 17:23:05', '2019-07-08 04:29:10'),
 (26, 'Contacto', 'contacto', 'Contacto', 'Contactos', NULL, 'App\\Contacto', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-07 05:20:46', '2019-07-07 05:33:51'),
-(27, 'Email', 'email', 'Email', 'Emails', NULL, 'App\\Email', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2019-07-07 05:50:06', '2019-07-07 05:50:06');
+(27, 'Email', 'email', 'Email', 'Emails', NULL, 'App\\Email', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-07-07 05:50:06', '2019-07-08 04:55:33'),
+(28, 'About_Card', 'about-card', 'About Card', 'About Cards', NULL, 'App\\AboutCard', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2019-07-08 05:35:39', '2019-07-08 05:35:39');
 
 -- --------------------------------------------------------
 
@@ -383,28 +414,16 @@ CREATE TABLE `Email` (
   `asunto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mensaje` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `estado` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `Email`
 --
 
-INSERT INTO `Email` (`id`, `nombre`, `correo`, `asunto`, `mensaje`, `created_at`, `updated_at`) VALUES
-(1, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,', '2019-07-07 06:34:27', '2019-07-07 06:34:27'),
-(3, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2019-07-07 07:23:31', '2019-07-07 07:23:31'),
-(4, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2019-07-07 07:25:17', '2019-07-07 07:25:17'),
-(5, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2019-07-07 07:26:16', '2019-07-07 07:26:16'),
-(6, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2019-07-07 07:26:34', '2019-07-07 07:26:34'),
-(7, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.', '2019-07-07 07:29:42', '2019-07-07 07:29:42'),
-(8, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.', '2019-07-07 07:32:12', '2019-07-07 07:32:12'),
-(9, 'Cristian Arias', 'kriss@gmail.com', 'Duda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.', '2019-07-07 07:38:29', '2019-07-07 07:38:29'),
-(10, 'asd', 'asd@gmail.com', 'asd', 'asd', '2019-07-07 07:39:28', '2019-07-07 07:39:28'),
-(11, 'prueba 1', 'kriss@gmail.com', 'Duda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.', '2019-07-07 08:00:45', '2019-07-07 08:00:45'),
-(12, 'Cristian Arias', 'kriss@gmail.com', 'duda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.', '2019-07-07 08:02:13', '2019-07-07 08:02:13'),
-(13, 'Cristian Arias', 'kriss@gmail.com', 'duda', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.', '2019-07-07 08:03:04', '2019-07-07 08:03:04'),
-(14, 'asd', 'asd@gmail.com', 'asd', 'asd', '2019-07-07 08:03:41', '2019-07-07 08:03:41'),
-(15, 'asd', 'asd@gmail.com', 'asd', 'asdasdasdasdasdasdasdasdasdasdsadasdasdasdasdasdasdadadadadadsadasdasmdjkadkjashduabsda', '2019-07-07 08:05:18', '2019-07-07 08:05:18');
+INSERT INTO `Email` (`id`, `nombre`, `correo`, `asunto`, `mensaje`, `created_at`, `updated_at`, `estado`) VALUES
+(1, 'CRISTIAN ALEJANDRO RODRIGUEZ ROCHA', 'kriss@gmail.com', 'Duda', 'mi duda es saber si esta wea esta funcionando como se debe o no', '2019-07-08 05:00:43', '2019-07-08 05:00:43', 'no leido');
 
 -- --------------------------------------------------------
 
@@ -453,7 +472,7 @@ CREATE TABLE `index` (
 --
 
 INSERT INTO `index` (`id`, `image`, `tittle`, `subtittle`, `button`, `created_at`, `updated_at`, `color_tittle`, `color_subtittle`) VALUES
-(1, 'index/July2019/U0COZ8ud90bqMRnOU39N.jpg', 'Check-Case', 'Bienvenido a Check-Case, nuestra aplicacion web para gestion de agencias de abogados', 'ver mas', '2019-07-04 07:03:00', '2019-07-05 21:57:36', '#ffffff', '#ffffff');
+(1, 'index/July2019/mqaDvD9BFZSswpgtd8nG.jpg', 'Check-Case', 'Bienvenido a Check-Case, nuestra aplicacion web para gestion de agencias de abogados', 'ver mas', '2019-07-04 07:03:00', '2019-07-08 04:30:37', '#ffffff', '#ffffff');
 
 -- --------------------------------------------------------
 
@@ -509,7 +528,7 @@ CREATE TABLE `menu_items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `route` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parameters` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `parameters` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -536,13 +555,14 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (21, 1, 'Juzgados', '', '_self', 'voyager-company', NULL, 13, 5, '2019-06-11 10:49:15', '2019-06-16 08:51:16', 'voyager.juzgado.index', NULL),
 (26, 1, 'Editar pagina principal', '', '_self', 'voyager-tools', '#000000', NULL, 8, '2019-06-25 05:32:46', '2019-07-04 09:42:51', NULL, ''),
 (27, 1, 'Inicio', '', '_self', 'voyager-browser', '#000000', 26, 1, '2019-07-04 04:24:03', '2019-07-04 09:42:27', 'voyager.index.index', 'null'),
-(29, 1, 'Servicios', '', '_self', 'voyager-folder', '#000000', 26, 3, '2019-07-04 21:04:16', '2019-07-05 22:01:12', 'voyager.services.index', 'null'),
+(29, 1, 'Servicios', '', '_self', 'voyager-folder', '#000000', 26, 4, '2019-07-04 21:04:16', '2019-07-08 05:35:57', 'voyager.services.index', 'null'),
 (30, 1, 'Sobre Nosotros', '', '_self', 'voyager-info-circled', '#000000', 26, 2, '2019-07-05 04:47:25', '2019-07-05 22:00:36', 'voyager.about.index', 'null'),
-(32, 1, 'Cartas de servicio', '', '_self', 'voyager-photos', '#000000', 26, 4, '2019-07-05 06:00:30', '2019-07-05 21:58:56', 'voyager.services-cards.index', 'null'),
-(33, 1, 'Equipo', '', '_self', 'voyager-group', '#000000', 26, 5, '2019-07-05 17:22:51', '2019-07-05 21:59:18', 'voyager.team.index', 'null'),
-(34, 1, 'Cartas de equipo', '', '_self', 'voyager-file-text', '#000000', 26, 6, '2019-07-05 17:23:05', '2019-07-05 21:59:40', 'voyager.team-cards.index', 'null'),
-(35, 1, 'Contactos', '', '_self', NULL, NULL, NULL, 9, '2019-07-07 05:20:46', '2019-07-07 05:20:46', 'voyager.contacto.index', NULL),
-(36, 1, 'Emails', '', '_self', NULL, NULL, NULL, 10, '2019-07-07 05:50:06', '2019-07-07 05:50:06', 'voyager.email.index', NULL);
+(32, 1, 'Cartas de servicio', '', '_self', 'voyager-photos', '#000000', 26, 5, '2019-07-05 06:00:30', '2019-07-08 05:35:57', 'voyager.services-cards.index', 'null'),
+(33, 1, 'Equipo', '', '_self', 'voyager-group', '#000000', 26, 6, '2019-07-05 17:22:51', '2019-07-08 05:35:57', 'voyager.team.index', 'null'),
+(34, 1, 'Cartas de equipo', '', '_self', 'voyager-file-text', '#000000', 26, 7, '2019-07-05 17:23:05', '2019-07-08 05:35:57', 'voyager.team-cards.index', 'null'),
+(35, 1, 'Contactos', '', '_self', 'voyager-telephone', '#000000', 26, 8, '2019-07-07 05:20:46', '2019-07-08 05:35:57', 'voyager.contacto.index', 'null'),
+(36, 1, 'Emails', '', '_self', 'voyager-mail', '#000000', 13, 6, '2019-07-07 05:50:06', '2019-07-08 04:36:11', 'voyager.email.index', 'null'),
+(37, 1, 'Sobre Nosotros cartas', '', '_self', 'voyager-window-list', '#000000', 26, 3, '2019-07-08 05:35:39', '2019-07-08 05:36:25', 'voyager.about-card.index', 'null');
 
 -- --------------------------------------------------------
 
@@ -717,7 +737,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (133, 'read_Email', 'Email', '2019-07-07 05:50:06', '2019-07-07 05:50:06'),
 (134, 'edit_Email', 'Email', '2019-07-07 05:50:06', '2019-07-07 05:50:06'),
 (135, 'add_Email', 'Email', '2019-07-07 05:50:06', '2019-07-07 05:50:06'),
-(136, 'delete_Email', 'Email', '2019-07-07 05:50:06', '2019-07-07 05:50:06');
+(136, 'delete_Email', 'Email', '2019-07-07 05:50:06', '2019-07-07 05:50:06'),
+(137, 'browse_About_Card', 'About_Card', '2019-07-08 05:35:39', '2019-07-08 05:35:39'),
+(138, 'read_About_Card', 'About_Card', '2019-07-08 05:35:39', '2019-07-08 05:35:39'),
+(139, 'edit_About_Card', 'About_Card', '2019-07-08 05:35:39', '2019-07-08 05:35:39'),
+(140, 'add_About_Card', 'About_Card', '2019-07-08 05:35:39', '2019-07-08 05:35:39'),
+(141, 'delete_About_Card', 'About_Card', '2019-07-08 05:35:39', '2019-07-08 05:35:39');
 
 -- --------------------------------------------------------
 
@@ -890,7 +915,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (133, 1),
 (134, 1),
 (135, 1),
-(136, 1);
+(136, 1),
+(137, 1),
+(138, 1),
+(139, 1),
+(140, 1),
+(141, 1);
 
 -- --------------------------------------------------------
 
@@ -1053,10 +1083,10 @@ CREATE TABLE `settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value` text COLLATE utf8mb4_unicode_ci,
+  `details` text COLLATE utf8mb4_unicode_ci,
   `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order` int(11) NOT NULL DEFAULT 1,
+  `order` int(11) NOT NULL DEFAULT '1',
   `group` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1069,11 +1099,11 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (2, 'site.description', 'Site Description', 'Site Description', '', 'text', 2, 'Site'),
 (3, 'site.logo', 'Site Logo', '', '', 'image', 3, 'Site'),
 (4, 'site.google_analytics_tracking_id', 'Google Analytics Tracking ID', NULL, '', 'text', 4, 'Site'),
-(5, 'admin.bg_image', 'Admin Background Image', 'settings/July2019/Q7cGF8qH2QBjVL9ygjIo.jpg', '', 'image', 5, 'Admin'),
+(5, 'admin.bg_image', 'Admin Background Image', 'settings/July2019/HqJB7ROCs9rIfV1jlCDj.jpg', '', 'image', 5, 'Admin'),
 (6, 'admin.title', 'Admin Title', 'Check-Case', '', 'text', 1, 'Admin'),
 (7, 'admin.description', 'Admin Description', 'Bienvenido a panel de administración de Check-Case, por favor inicie sesión y empecemos a trabajar', '', 'text', 2, 'Admin'),
 (8, 'admin.loader', 'Admin Loader', 'settings/July2019/ZYVHOToV10M9jUc6iNMv.png', '', 'image', 3, 'Admin'),
-(9, 'admin.icon_image', 'Admin Icon Image', 'settings/July2019/6BW6m5JGRew9y6ZCa5qj.jpeg', '', 'image', 4, 'Admin'),
+(9, 'admin.icon_image', 'Admin Icon Image', 'settings/July2019/pwBTkZFrxv9yEDxDi4Y7.jpeg', '', 'image', 4, 'Admin'),
 (10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin');
 
 -- --------------------------------------------------------
@@ -1122,11 +1152,11 @@ CREATE TABLE `team_cards` (
 --
 
 INSERT INTO `team_cards` (`id`, `user_name`, `user_surname`, `image`, `role`, `twitter`, `facebook`, `google_plus`, `linkedin`, `created_at`, `updated_at`) VALUES
-(1, 'Daniel', 'Cárdenas', 'team-cards/July2019/AC4a0dIWHMtq60OaMO28.jpg', 'DIrector de desarrollo e implementación', NULL, NULL, NULL, NULL, '2019-07-05 22:18:00', '2019-07-07 05:00:33'),
-(2, 'Daniel', 'Navarrete', 'team-cards/July2019/yFI9qFtNgZnLAr4Qbv1t.jpg', 'DIrector de analisis y diseño', NULL, NULL, NULL, NULL, '2019-07-07 04:59:53', '2019-07-07 04:59:53'),
-(3, 'Gregorio', 'Orellana', 'team-cards/July2019/qCDuSn60rEL5yb55CTtI.jpg', 'Desarrollador', NULL, NULL, NULL, NULL, '2019-07-07 05:04:40', '2019-07-07 05:04:40'),
-(4, 'Sebastian', 'Rivera', 'team-cards/July2019/atS8Zvo2sbClMVXpEABZ.jpg', 'Desarrollador', NULL, NULL, NULL, NULL, '2019-07-07 05:05:00', '2019-07-07 05:05:00'),
-(5, 'Cristian', 'Arias', 'team-cards/July2019/rCZfwg9QfJe3E0ux6nz7.png', 'Desarrollador', NULL, NULL, NULL, NULL, '2019-07-07 05:05:30', '2019-07-07 05:05:30');
+(1, 'Daniel', 'Cárdenas', 'team-cards/July2019/jJ6LQxXhaGeu4w4IdCCc.jpg', 'DIrector de desarrollo e implementación', NULL, NULL, NULL, NULL, '2019-07-05 22:18:00', '2019-07-08 04:42:14'),
+(2, 'Daniel', 'Navarrete', 'team-cards/July2019/CKLJAPWlYc8itEhZnAoT.jpg', 'DIrector de analisis y diseño', NULL, NULL, NULL, NULL, '2019-07-07 04:59:53', '2019-07-08 04:42:06'),
+(3, 'Gregorio', 'Orellana', 'team-cards/July2019/Nig86BBuyKvybL4wvn8n.jpg', 'Desarrollador', NULL, NULL, NULL, NULL, '2019-07-07 05:04:40', '2019-07-08 04:41:59'),
+(4, 'Sebastian', 'Rivera', 'team-cards/July2019/uNRmyLnfTJlFzQ20QAQc.jpg', 'Desarrollador', NULL, NULL, NULL, NULL, '2019-07-07 05:05:00', '2019-07-08 04:41:47'),
+(5, 'Cristian', 'Arias', 'team-cards/July2019/iDLBwdI91tHhaUU48xwK.png', 'Desarrollador', NULL, NULL, NULL, NULL, '2019-07-07 05:05:30', '2019-07-08 04:41:38');
 
 -- --------------------------------------------------------
 
@@ -1173,7 +1203,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `settings` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `settings` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `name2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1191,7 +1221,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name1`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `name2`, `surname1`, `surname2`, `rut`, `direccion`, `ciudad`, `fono`, `fono_movil`) VALUES
-(1, 1, 'Cristian', 'kriss@gmail.com', 'users/July2019/CEUERUu5z7fd2PN2D9yg.png', NULL, '$2y$10$2pYthsx/wYzyyyBGoOwYDOfJa1Mn954N4PqyF1TU.YXpB8u5OrZJG', 'Myrzm8rhFJp3lB1VoXC9t9kyKlZ4Pr9aAdsOauf4iAozGuEMpYOzaYZhmQ48', '{\"locale\":\"es\"}', '2019-05-13 07:03:50', '2019-07-05 20:48:41', 'Esteban', 'Arias', 'Vallejos', '19823029-4', 'Francia 330', 'Chillan', NULL, '991518060'),
+(1, 1, 'Cristian', 'kriss@gmail.com', 'users/July2019/ueWRmJjDABXUhlKQ0c4I.png', NULL, '$2y$10$2pYthsx/wYzyyyBGoOwYDOfJa1Mn954N4PqyF1TU.YXpB8u5OrZJG', 'EIQjA3BJhiit6bDaNd5av8ckl3AyY63aDbhX3aIJFN0V7mXs6Fedudy7BrEn', '{\"locale\":\"es\"}', '2019-05-13 07:03:50', '2019-07-08 05:26:06', 'Esteban', 'Arias', 'Vallejos', '19823029-4', 'Francia 330', 'Chillan', NULL, '991518060'),
 (4, 5, 'Ronald', 'Ronald@gmail.com', 'users/July2019/8EiWJWal18zIdSPgRJp8.jpg', NULL, '$2y$10$cSXMCQMRAhqPvAEaF8cbzu22lm3esKQbRjxTCnuKpg4Lx5DM1t2uy', NULL, NULL, '2019-06-25 10:51:23', '2019-07-05 20:48:50', 'Mandril', 'Quesillo', 'Panecillo', '20135723-3', 'calle falsa 123', 'Chillan', '112233445566', '112233445566');
 
 -- --------------------------------------------------------
@@ -1213,6 +1243,12 @@ CREATE TABLE `user_roles` (
 -- Indices de la tabla `About`
 --
 ALTER TABLE `About`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `About_Card`
+--
+ALTER TABLE `About_Card`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1403,6 +1439,12 @@ ALTER TABLE `About`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `About_Card`
+--
+ALTER TABLE `About_Card`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `Bufete`
 --
 ALTER TABLE `Bufete`
@@ -1424,13 +1466,13 @@ ALTER TABLE `Contacto`
 -- AUTO_INCREMENT de la tabla `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=226;
 
 --
 -- AUTO_INCREMENT de la tabla `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `Diary`
@@ -1442,7 +1484,7 @@ ALTER TABLE `Diary`
 -- AUTO_INCREMENT de la tabla `Email`
 --
 ALTER TABLE `Email`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `Foro`
@@ -1472,7 +1514,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -1484,7 +1526,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT de la tabla `Respuestas`
@@ -1544,7 +1586,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
