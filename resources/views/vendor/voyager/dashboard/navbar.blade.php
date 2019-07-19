@@ -41,7 +41,7 @@
                     <li class="profile-img">
                         <img src="{{ $user_avatar }}" class="profile-img">
                         <div class="profile-body">
-                            <h5>{{ app('VoyagerAuth')->user()->name }}</h5>
+                            <h5>{{ app('VoyagerAuth')->user()->name1 }} {{ app('VoyagerAuth')->user()->surname1 }} </h5>
                             <h6>{{ app('VoyagerAuth')->user()->email }}</h6>
                         </div>
                     </li>
@@ -57,7 +57,7 @@
                                 @if(isset($item['icon_class']) && !empty($item['icon_class']))
                                 <i class="{!! $item['icon_class'] !!}"></i>
                                 @endif
-                                {{__($name)}}
+                                {{__('Cerrar sesión')}}
                             </button>
                         </form>
                         @else

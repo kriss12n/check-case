@@ -10,12 +10,19 @@
 @extends('layout.master')
 
   <style>
+
+    html{
+        scroll-behavior: smooth;
+    }
+
         #hero {
         width: 100%;
         height: 100vh;
         background-size: cover;
         position: relative;
          }
+
+
 
   </style>
 </head>
@@ -140,7 +147,7 @@
         <p class="section-description">{{$team->subtittle}}</p>
       </div>
             @endforeach
-      <div class="row">
+      <div class="row team">
           @foreach ($cardt as $card)
 
         <div class="col-lg-3 col-md-6">
@@ -233,20 +240,27 @@
     </div>
     <!-- Uncomment below if you wan to use dynamic maps -->
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3203.359535192548!2d-72.10613068517799!3d-36.59364897298344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9668d7cf36e02319%3A0x59d8117045c22ddd!2sInacap!5e0!3m2!1ses-419!2scl!4v1562471279741!5m2!1ses-419!2scl" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
-  </section><!-- #contact -->
+  </section>
 
 
 
   </main>
 
-  <!--==========================
-    Footer
-  ============================-->
   @include('layout.footer')
 
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
 
 
 </body>
+<script>
+
+$(document).ready(function(){
+    $('.team').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    });
+  });
+</script>
 </html>

@@ -156,7 +156,7 @@
                    success: function(msg){
                     $("#chat").html(msg);
                    },fail:function(){
-                       alert("fallo");
+
                    }
 
 
@@ -169,7 +169,7 @@
                 var auto = setInterval(function() {
                 $('#chat').load("{{ route('chat',['id' =>$id]) }}").fadeIn('slow');
 
-               }, 5000); //retornar cada 5 segundos si no me explota el pc
+               }, 1000); //retornar cada 5 segundos si no me explota el pc
 
                 });
               </script>

@@ -5,7 +5,7 @@
 @section('page_header')
     <div class="container-fluid">
         <h1 class="page-title">
-            <i class="{{ $dataType->icon }}"></i> {{ $dataType->display_name_plural }}
+            <i class="{{ $dataType->icon }}"></i> {{ ('Página principal') }}
         </h1>
         @foreach(Voyager::actions() as $action)
             @if (method_exists($action, 'massAction'))

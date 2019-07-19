@@ -17,7 +17,8 @@
   <!-- Libraries CSS Files -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="lib/animate/animate.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="css/slick.css">
+  <link rel="stylesheet" href="css/slick-theme.css">
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
 </head>
@@ -33,7 +34,7 @@
         <script src="lib/counterup/counterup.min.js"></script>
         <script src="lib/superfish/hoverIntent.js"></script>
         <script src="lib/superfish/superfish.min.js"></script>
-
+        <script src="js/slick.min.js"></script>
         <!-- Contact Form JavaScript File -->
         <script src="contactform/contactform.js"></script>
 

@@ -114,7 +114,7 @@
 
                     <div class="form-group" id="rememberMeGroup">
                         <div class="controls">
-                        <input type="checkbox" name="remember" value="1"><span class="remember-me-text">{{ __('voyager::generic.remember_me') }}</span>
+                        <input type="checkbox" name="remember" value="1"><span class="remember-me-text">{{ __(' Recordar esta cuenta') }}</span>
                         </div>
                     </div>
 
@@ -124,6 +124,7 @@
                     </button>
               </form>
                       <a class="btn btn-cancel" href="{{url('/')}}">Cancelar</a>
+
 
               <div style="clear:both"></div>
 
@@ -136,6 +137,11 @@
                 </ul>
               </div>
               @endif
+              @if (session('alert'))
+              <div class="alert alert-success">
+                  {{ session('alert') }}
+              </div>
+          @endif
 
             </div> <!-- .login-container -->
 

@@ -704,12 +704,18 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
         $respuesta->foro_id = $id;
         $respuesta->user_id = Auth::id();
         $respuesta->save();
+        //rol
+        $rol  = DB::table('users')->select('role_id')->where('id',Auth::id())->get();
+
+        foreach($rol as $rol){
+            $rol  = $rol->role_id;
+        }
         //agregar ordeby fecha de creacion
         $foro = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido')->where('Foro.id',$id)->get();
         if($foro->id = $id){
             $respuestas = DB::table('Respuestas')->join('users','users.id','=','Respuestas.user_id')->select('Respuestas.id','Respuestas.user_id','Respuestas.foro_id','Respuestas.texto','Respuestas.created_at','users.name1','users.surname1','users.surname2','users.avatar')->orderBy('created_at','asc')->get();
             //---------------------------
-            if (Auth::id() == '1'){
+            if ($rol == 1 || $rol == 4 ){
             foreach ($foro as $foros){
                 echo'
             <div class="row">
@@ -762,9 +768,6 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
         $post->save();
         //-----------------------------------------------------------
 
-
-
-
         //------------------------------------
         $foro = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido','users.name1','users.surname1','users.surname2')->where('Foro.id',$id)->get();
           //weas que se me ocurrieron ahora
@@ -782,6 +785,12 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
 
     public function chat($id){
       //weas que se me ocurrieron ahora
+
+      $rol  = DB::table('users')->select('role_id')->where('id',Auth::id())->get();
+
+        foreach($rol as $rol){
+            $rol  = $rol->role_id;
+        }
       //traemos los datos para el titulo, el asunto del chat y con quien esta chateando
         $foro = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido','users.name1','users.surname1','users.surname2')->where('Foro.id',$id)->get();
 
@@ -789,7 +798,7 @@ class RespuestasController extends \TCG\Voyager\Http\Controllers\VoyagerBaseCont
           //se le chanta un orderby en el created_at para que los mensajes se ordenen
           $respuestas = DB::table('Respuestas')->join('users','users.id','=','Respuestas.user_id')->select('Respuestas.id','Respuestas.user_id','Respuestas.foro_id','Respuestas.texto','Respuestas.created_at','users.name1','users.surname1','users.surname2','users.avatar')->orderBy('created_at','asc')->get();
 
-          if (Auth::id() == '1'){
+          if ($rol  == 1 || $rol == 4){
             foreach ($foro as $foros){
                 echo'
             <div class="row">

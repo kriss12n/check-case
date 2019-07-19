@@ -124,9 +124,16 @@ class ForoController extends \TCG\Voyager\Http\Controllers\VoyagerBaseController
         // Check if a default search key is set
         $defaultSearchKey = $dataType->default_search_key ?? null;
 
+        $rol = DB::table('users')->select('role_id')->where('id',Auth::id())->get();
 
-           //retornando los post con inner join
-           if(Auth::id() == 1 ){
+        foreach($rol as $rol){
+
+            $rol = $rol->role_id;
+
+        }
+
+           //retornando los posteos con inner join
+           if($rol == 1 || $rol == 4 ){
             $postA = DB::table('Foro')->join('users','users.id','=','Foro.usuario_id')->select('Foro.id','Foro.title','Foro.content','Foro.created_at','Foro.leido','users.name1','users.surname1','users.surname2','users.avatar','users.role_id')->get();
             //dd($post);
            }else{
